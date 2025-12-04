@@ -1,7 +1,7 @@
 # cybersecurtiy-journey
 This repo documents my weekly learning progress as I train my career in Cybersecurity. This will be a half a year journey of trying to grasp the fundamentals and the ins and outs of cybersecurity. 
 
-### CURRENTLY FOCUED ON ###
+### CURRENTLY FOCUSED ON ###
 - CCNA
 - Security+ 
 - TryHackMe SOC/Blue Team labs
