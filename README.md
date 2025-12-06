@@ -1,4 +1,4 @@
-# cybersecurtiy-journey
+### cybersecurity-journey ###
 This repo documents my weekly learning progress as I train my career in Cybersecurity. This will be a half a year journey of trying to grasp the fundamentals and the ins and outs of cybersecurity. 
 
 ### CURRENTLY FOCUSED ON ###
@@ -49,3 +49,65 @@ There are also ports, a numbering system from 0-65535 that are usually where we 
 And lastly for networking fundamentals is port forwarding. Port forwarding is necessary since without it only devices within the LAN can access the things inside it. Port forwarding makes it so that external devices that aren’t in our network can access the internal services inside our network. Things like firewalls are added here because they allow or deny traffic to enter or go out of a network. Another one is a VPN (Virtual Private Network), it acts like a private tunnel that makes it for 2 devices withing different networks can communicate privately with each other. 
 
 ### DAY 2 ###
+For day 2, I learned the basics of how the web works and Linux. 
+
+Although I have a background in networking, we never really delved deeper into how the web works, specifically how the different protocols work. We just knew what they were and what they did. That’s why this module made me understand the different protocols that take place whenever we browse the web. 
+
+Let’s start with the DNS or the Domain Name System, basically without the DNS when searching the web, we would have to enter the IP address of the website. Let’s say if we want to look up Facebook, without DNS in place, just searching up Facebook wouldn’t get you anywhere because it wouldn’t know what to do with it. We would have to type in one of its IP addresses like 152.240.241.35. Having DNS would mean that we can mask this IP with Facebook.com. Making it available for us to look it up by just typing the name of the website and not the IP address. 
+
+We also have part of the DNS, the top-level domain (.com, .edu, .ph, .gov, etc.), second-level domain (Facebook, Gmail, YouTube, etc.), and  the subdomain (admin.tryhackme.com, they are seated in the left side of the second-level domain and has the same restrictions like the second-level domain. In this case it’s admin.)
+
+In DNS there are also record types, A record (holds IPv4 addresses), AAAA (holds IPv6 addresses), CNAME (this resolves to another domain and that domain is responsible to where to go), MX Record (This is responsible for the transport of emails, like redirecting it to where it should go first, and the backups that it should go to.), and TXT Record (This is responsible for creating rules of entry for emails, and it also can prove that your ownership of a domain, and storing any extra information a service needs). 
+
+There’s also how the DNS handles requests. 
+1. First it checks if the DNS you are trying to look up is in your computer’s local cache, if not it goes to a Recursive DNS Server. 
+2. The Recursive DNS Server (this is provided by your ISP) also has a cache. If it can find it locally it will proceed with getting it. If not, it now goes to the Root DNS Server. 
+3. Root Servers act as the DNS backbone of the internet. This is for redirection. Let’s say you look up Facebook.com, it will redirect you to the correct TLD Server. So, TLD Server will be responsible for forwarding where to go for the .com part. 
+4. Then, the TLD Server will forward it to the respective Authoritative server that will handle your response. 
+5. Lastly, the Authoritative Server is responsible for storing DNS records for a particular domain name. Once it finds it, it sends it back to the Recursive DNS server, and caches it locally and then proceeds to move forward with the request. 
+
+Next, is the HTTP(s) or the HyperText Transfer Protocol (Secure). This protocol is responsible on how we communicate with the web servers that we interact with, this will decide how the webpage data is transmitted, regardless of the formats it may use (images, videos, html, etc.).
+Inside this is the URL (Uniform Resource Locator), this is an instruction on how to access the information on the internet. We also have methods like GET (getting information), POST (posting new information), PUT (updating information), and DELETE (deleting information) requests.  
+
+We also have status codes that tell us what went wrong when we tried to access a HTTP server. One example would be 200 (OK) or 403 (Forbidden) that we might encounter on some websites. 
+
+And the inside are also the different headers, one common header that we are all familiar with are cookies. Cookies make it so that whenever we visit a website once and we enable cookies. Whatever we do with the website, if we come back to it, it will remember us because of the cookie. 
+
+ Of course, the structure of how websites are created is also in this. The two main languages are HTML, which adds static configurations for the website and JavaScript which adds the functionality for the website. Both of this work hand in hand to create a functioning website. And when bad programming occurs within this, data can be exposed to hackers specially when it's poorly made. One practice is HTML injection, this is where unfiltered user input is displayed on the page. 
+
+So, by putting all of these together I learned the process whenever I request a website. To sum it up it goes like this, Request a website – Find the IP using DNS – Connect to the server – View the website. 
+
+ 
+Last is the introduction of Linux and how it works. For day 2, I only went through 2 rooms since how the web works took so much of my time. 
+
+For this, I was introduced to Linux (Linux is an operating system like Windows) and it is lightweight compared to Windows OS. Some of its purpose are it allows us to create websites, for control panels in cars, Point of Sale, and infrastructures like traffic light controllers or industrial sensors. And we used a Ubuntu Linux machine that is built in TryHackMe. The one downside that people can find daunting with Linux is that it doesn’t exactly have a GUI, we only interact with the machine =using the terminal. So, really understanding and learning the commands here are helpful. 
+
+With this room, I learned my first command which is echo, this outputs text. After echo, it started to be more fun. I learned about ls, which lists the directories that you have within that location. There’s also cd where it changes the directory you are in. There’s cat for outputting the contents of a file, and there’s pwd for determining where you are in the directory.
+
+Here's a list of codes/flags/operators that I also learned:
+-	find [-name hello.txt] or find [-name *.txt if you want the list of all the files that have this type of extension.] (for finding a specific file)
+-	grep, one of its uses is for finding a specific text in a file. grep “error” this.text
+-	&, usage is it enables the code to do its job in the background while you do other stuff. 
+-	&& allows y ou to combine multiple codes in one line
+-	>, this operator let’s you take the output and send it to where you want to. For example echo hello > message. This puts the txt hello file to the message file.
+-	>>, this operator does the same but instead sending it and changing the values within it, this appends it. Meaning if we use echo hi >> message. We are creating a file that has two texts in it hello, and hi. 
+
+For room 2, or the Linux Fundamentals 2. We used ssh to remotely execute commands on another device. 
+
+With ssh I could login and use accounts that were provided by tryhackme using the command
+ssh tryhackme@givenipaddress. Along with its password, tryhackme.
+This allowed me to access a remote machine that I can execute commands on.
+
+These are the commands I’ve learned in room 2: 
+-	-a, this comes along with ls and lists all files including those that are hidden. -a isa flag and with man (manual) command. man ls, we can view all the flags that we can use within linux. 
+-	touch, for creating a file
+-	mkdir, making a folder, which then creates a new directory.
+-	cp, copy a file or folder
+-	mv, move a file or folder
+-	rm, remove a filer or folder
+-	file, determine the type of file.
+-	-l, enables us to see the details about a file such as its permissions, who created it and when. Paired like this, ls -l 
+-	su, for switching users. We can either use su user2 which switches to user2 but variables stay the same, but we keep our environment or use su -l user2 that loads user2’s environment variables. 
+And lastly some of the directories like, /etc (files here are used by your operating system), /var (this is where frequently accessed or written by services applications running ong the system, like log files), /root(the home directory), and /tmp (stores data that are only accessed once or twice.)
+That’s all for day 2!!
+
