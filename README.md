@@ -111,3 +111,44 @@ These are the commands I’ve learned in room 2:
 And lastly some of the directories like, /etc (files here are used by your operating system), /var (this is where frequently accessed or written by services applications running ong the system, like log files), /root(the home directory), and /tmp (stores data that are only accessed once or twice.)
 That’s all for day 2!!
 
+### DAY 3 ###
+For Day 3 I finished 2 modules. Linux Fundamentals 3 and Windows Fundamentals 1. 
+For Linux Fundamentals 3, Terminal Text Editors were taught. Although we have echo and > to output to a given file, it’s only limited. That’s why [nano] is preferred when it comes to editing files. We use nano [name of file], if the file you input doesn’t exist, yet it will create that file. If it does exist it will just proceed to access the contents of that file and continue on editing it. 
+VIM was also introduced but since it’s a much more advanced editor, it was only brought up. But I do plan on learning VIM since it’s also a part of Linux. 
+Some utilities were also taught, like copying a file from your machine to a remote system if we know the username and the IP address and the directories of that machine. 
+scp was used, it goes like this: 
+scp [file name in your system to be copied] [username of where you’ll copy it]@[its ip address]:[port number if available]/[directory]. 
+And if we want to copy something from that machine the code is as follows:
+scp [name of the machine that you’ll copy the contents]@[ip address]:[port number]/[directory] [filename in your system]. 
+If for example you copy a file named hello.txt to a remote machine with a directory like home/downloads/hi.txt, it will replace the hi.txt with hello.txt. But if you just input the directory home/downloads/. The file hello.txt will be copied in that directory along with hi.txt
+
+Python3’s “HTTPServer” was also introduced here, this module turns your computer into a quick and easy web server that you can use to server you own files where it can be downloaded using curl and wget. 
+To access and download we need to have 2 instances of the terminal opened. 
+The first terminal will be used to access web server with the command: 
+python3 -m http.server, while this is open, we can open another terminal where we can use that to download files. The code to use is: wget http://[MACHINE_IP]:8000/[filename].
+Once we are done, we can use ctrl+c to stop the instance of the web server. 
+I also learned about the processes that run in Linux, how to view them and how to manage them. ps, give a list of all the running processes in your system. ps aux, gives the processes that are also run by other users. 
+These processes are tagged with their ID called the PID (Process ID), this is used to determine the order of which the process runs, or the total number of processes currently running. 
+top command was also introduced, this also gives the processes that are running but instead of a one-time view like the ps, this command refreshes every 10 seconds and when you move down the list using the arrow keys. 
+kill, is another command used to terminate a process, when it is killed, we can also do 3 other commands to follow up. We can use SIGTERM (kills the process and allows it to do cleanup), SIGKILL (kills the process and doesn’t do any cleanup), SIGSTOP (suspend a process). 
+There are also processes that we manage, we can do this by using the command: systemctl [option] [service] wherein option can be: START, STOP, ENABLE, DISABLE.
+We also have background and foreground processes. Things ran in the terminal will run in the foreground since if we use like cat to see the contents of the file it is shown through the terminal which is a foreground process. A background process is usually paired with an * operator. This is great for downloading or copying large files that can take a lot of time. With this, we can do other tasks rather than just waiting for it to finish. We can also use ctrl + z to background a process. And to foreground it again, we can just use fg.
+And then we have cron, it is a process that let’s us manage our crontabs where we can automate certain processes by putting in: 
+0 */12 * * * cp -R /home/cmnatic/Documents /var/backups/
+[min][hour][day of the month][month][day of the week][the actual command that will be executed], we can also put in asterisk * to leave some of it blank. So the code above will run every 12 hours every day.  [*/] means that is should “run every x units”, so in this case 12 units. 
+
+There are also packages and software repos within Linux. When users or developers want to submit software to the community, they do so by submitting it to an “apt (advanced persistent threat)” repository. This needs to be approved and once approved it will be okay for release.
+
+We can locate the repositories in our system using the ls command in the /etc/apt directory. Locate sources.list and use nano. So, nano sources.list, with this command we can see all the repositories that we have access to. We can also remove and add repositories inside. Or we can also use the command sudo add-apt-repository [Type of repository]:[username]/[name of the specific repository]. After this it will automatically add it to the sources.list 
+And lastly, we can easily maintain our logs via the directory /var/log 
+Next we move on to Window’s Fundamentals 1. This was very easy since, almost everyone uses windows as their operating system. The basics were introduced like the GUI (Graphical User Interface), the file system (from FAT16/32 – HPFS (High Performance File System) – and what Windows use now is the NTFS (New Technology File System)). Basically, NFTS is above these 2 since it addresses limitations such as. Supporting files larger than 4gb, setting specific permissions on folders and files, folder and file compression, and encryption. 
+NTFS has 6 permissions per folder or file: Full control, Modify, Read & Execute, List Folder Contents, Read, Write. 
+NTFS also has a feature called ADS(Alternate Data Streams), it is a file attribute to NTFS. It allows files to have more than one stream of data. 
+The Windows\System32 Folders, in default this is where the OS is located. But it can actually be anywhere in the different directories. This is also where Environment Variables are, these are the variables that store information about the operating system environment. 
+
+Users were also introduced, how there’s a standard and administrator type of users. And to view these users, we can use the command lusrmgr.msc in run to view the users and groups. These groups has permissions set to it, and users are assigned to this group by the administrator. The user inherits the permissions of the group they are part in, but users can also be assigned to multiple groups. 
+The UAC (User Account Control), this helps prevent malware from damaging a PC and helps organizations deploy a better-managed desktop. We may have seen UAC do its job sometimes when it asks us for permission before allowing apps or users to make system-level changes. Without UAC, malware can be installed silently when we are browsing or doing stuff on the internet. 
+Settings and Control Panel was also introduced. Settings has become more advanced in comparison to other versions of settings in lower versions of windows. Settings is more used now even in changing things that, back then, would require the control panel to do so. 
+Lastly, the Task Manager, this informs us the apps and processes that are running in our system. This gives the CPU usage, GPU, Memory, and RAM. 
+
+
