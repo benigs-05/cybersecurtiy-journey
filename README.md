@@ -3,6 +3,7 @@ This repo documents my weekly learning progress as I train my career in Cybersec
 
 ### CURRENTLY FOCUSED ON ###
 - CCNA
+- Network+
 - Security+ 
 - TryHackMe SOC/Blue Team labs
 - Linux basics
