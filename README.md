@@ -236,6 +236,7 @@ NetNTLM on the other hand uses challenge-based methods for authentication, the p
 4.	The server forwards it to the domain controller
 5.	The domain controller verifies this by computing the data. If it matches the expected data, it verifies. If not, user can’t use the server.
 6.	And status is sent to the client whether he can access it or not
+
 Although both are used by DC, Kerberos is the default authentication service, and NetNTLM is used for backward compatibility. 
 And whenever a Windows domain gets larger, we manage it not by adding more devices, groups, policies to one domain but by adding a subdomain. This creates a tree, wherein we can have multiple domains, with multiple Domain controllers, and on different networks. A new security group is added her called Enterprise Admin that has access to all the domains.
 
