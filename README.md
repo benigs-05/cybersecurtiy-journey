@@ -181,5 +181,15 @@ BitLocker was also briefly introduced as a feature of Windows, but it wasn’t t
 Last is the Volume Shadow Copy Service (VSS)m this creates a snapshot of the data that can be used for backup whenever needed. VSS enabled will allow us to create restore points, perform system restore, configure restore settings, and delete restore points. This can be configured via right clicking a our C drive and picking the “Configure Shadow Copies”. 
 That’s it for the 4 modules that I went through for the past 4 days. I learned about the intro to cyber security, networking, Linux, and Windows fundamentals. I never had any trouble, and enjoyed Linux more compared to Windows. Theses series of module motivated me that there’s still so much new things to learn within cyber security and I am excited for it! 
 
+### DAY 6 – THE CHALLENGE OF LEARNING ## 
+As I get more into learning about what cybersecurity is, it dawned me that my current learning method wasn’t yielding the results I had hoped for. I often just jump into a topic, read it and understand it, move one and whatever topics I have learned that day will be summarized the next day before I start studying. 
+
+I did understand it, but only on a shallow level, I didn’t know how to correlate it to other concepts, and it was difficult for me to explain it in a comprehensive way. The retention and the mastery weren’t there. That’s why I needed change, and I reserved 1 day of looking up the web on how to study. 
+
+And that’s when I stumble upon Justin Sung, he’s a YouTuber that has dedicated his life on researching what is learning, how does it happen, and not just what are the best methods to learn. 
+
+The concept of putting high enough load and effort for the brain to change in a way that it’s easy to learn to understand concepts, correlate them, master them, and retain them. Applying this method took me double the time to finish a subject but I am happy that I get to learn hard, and not just the easy way. I am enjoying learning cyber security and have found great joy in the way I currently learn. There still needs to be improvement, and I am glad I am aware of it. 
+
+
 
 
