@@ -188,7 +188,8 @@ I did understand it, but only on a shallow level, I didn’t know how to correla
 
 And that’s when I stumble upon Justin Sung, he’s a YouTuber that has dedicated his life on researching what is learning, how does it happen, and not just what are the best methods to learn. 
 
-The concept of putting high enough load and effort for the brain to change in a way that it’s easy to learn to understand concepts, correlate them, master them, and retain them. Applying this method took me double the time to finish a subject but I am happy that I get to learn hard, and not just the easy way. I am enjoying learning cyber security and have found great joy in the way I currently learn. There still needs to be improvement, and I am glad I am aware of it. 
+The concept of putting high enough load and effort for the brain to change in a way that it’s easy to learn to understand concepts, correlate them, master them, and retain them. Applying this method took me double the time to finish a subject but I am happy that I get to learn hard, and not just the easy way. I am enjoying learning cyber security and have found great joy in the way I currently learn. There still needs to be improvement, and I am glad I am aware of it and I am here for it. 
+
 
 
 
