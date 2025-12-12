@@ -202,6 +202,47 @@ And that’s when I stumble upon Justin Sung, he’s a YouTuber that has dedicat
 
 The concept of putting high enough load and effort for the brain to change in a way that it’s easy to learn to understand concepts, correlate them, master them, and retain them. Applying this method took me double the time to finish a subject but I am happy that I get to learn hard, and not just the easy way. I am enjoying learning cyber security and have found great joy in the way I currently learn. There still needs to be improvement, and I am glad I am aware of it and am here for it. 
 
+### DAY 7 ###
+
+Day 7 was SUCH a fun experience since I really understood what Windows Domain is. 
+
+Windows Domain is a centralized network that contains servers, users, machines, and policies within it.
+
+The Windows Domain is managed by a server called Domain Controller. This Domain Controller is where all those devices and users are managed by. The Domain Controller holds information about security groups, Group Policies, Organizational Units, Authentication, and necessary data from users like login, ip address, ports, etc. 
+
+Data are handled by the Active Directory, specifically the Active Directory Domain Service. 
+
+There are 2 “Security Principals” living inside the Windows Domain. They are the Users, and the Machines. 
+Users can be authenticated and can be granted permissions on the resources that they can access. There are 2 different type of users, people (actual users that are signing in and using the devices) and services (services are granted accounts that are specifically used to run a certain service.) 
+Machines can also be authenticated via a random key that the domain controller will give them for future access and authentication. They are also permitted to use resources within the domain. 
+
+These 2 can be classified into different Security Groups. Security Groups are groups that have certain permissions on what resources they can use. Can they use the database server? The file server? The printer? 
+
+Users and Machine can also be put into Organizational Units. Organizational Units are used to categorize and organize the different entities living in the domain. Within OU’s there are also what we call Group Polices that can be applied to them, that’s why a user or machine can only be a part of one OU. This is because policies are applied to them. But if we want special privileges for a user, we can use delegation. Delegation is the use of assigning special privileges to a person over a certain OU. 
+
+Let’s move on to Authentication, the service used here are Kerberos, and NetNTLM. 
+Kerberos uses ticket-based authentication, the process is as follows: 
+1.	The user is authenticated via his login information. Since his login information is already hashed in the Domain Controller. When getting tickets from the Key Distribution Center, the password is hashed and encrypted and that is what’s sent to the server. 
+2.	The encrypted key is then forwarded to the KDC to give the Ticket-Getting-Ticket, once it calculates the necessary information and is correct the user is authenticated and given a TGT, that can be used to access different tickets like the TGServices, and is also given a Session key. 
+3.	To access a service, the user sends a request for a Ticket-Getting-Service to the KDC
+4.	The KDC then uses the users session key, TGT, and SPN (Service Principal Name – this specifies the service and the server name).
+5.	Once the calculation is complete and verified, KDC sends a TGS along with a service session key.
+6.	The user then sends these things to the server that’s going to be used. Once verified by the server, the user is now authenticated to use that server. 
+NetNTLM on the other hand uses challenge-based methods for authentication, the process is as follows: 
+1.	The user requests to get authenticated to the server they want to access. 
+2.	The server generates a challenge response to be sent to the client
+3.	The client adds information (NTLM password hash) along with the challenge that is sent back to the server. 
+4.	The server forwards it to the domain controller
+5.	The domain controller verifies this by computing the data. If it matches the expected data, it verifies. If not, user can’t use the server.
+6.	And status is sent to the client whether he can access it or not
+Although both are used by DC, Kerberos is the default authentication service, and NetNTLM is used for backward compatibility. 
+And whenever a Windows domain gets larger, we manage it not by adding more devices, groups, policies to one domain but by adding a subdomain. This creates a tree, wherein we can have multiple domains, with multiple Domain controllers, and on different networks. A new security group is added her called Enterprise Admin that has access to all the domains.
+
+Once this expands, and let’s say we have another company that is different from our domain that we are managing. That is called a forest, where there’s a collection of trees. 
+
+We also have trusts, this can be one way or two way. One way trust relationships allow for one domain to have access to another. Two-way means they can access specific things from each other with the permissions they are given. 
+
+
 
 
 
