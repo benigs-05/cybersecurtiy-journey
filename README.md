@@ -181,6 +181,18 @@ BitLocker was also briefly introduced as a feature of Windows, but it wasn’t t
 Last is the Volume Shadow Copy Service (VSS)m this creates a snapshot of the data that can be used for backup whenever needed. VSS enabled will allow us to create restore points, perform system restore, configure restore settings, and delete restore points. This can be configured via right clicking a our C drive and picking the “Configure Shadow Copies”. 
 That’s it for the 4 modules that I went through for the past 4 days. I learned about the intro to cyber security, networking, Linux, and Windows fundamentals. I never had any trouble, and enjoyed Linux more compared to Windows. Theses series of module motivated me that there’s still so much new things to learn within cyber security and I am excited for it! 
 
+### DAY 5 ### 
+This started the Cybersecurity 101 course, sine I had finish Pre Security. This opened with how I can use the web and utilize the search engines within it. We start by how we can use google better, or any search engine. We can specify what type we are searching for like filtype:, we can exclude words using -, we can look for specific words in a website by typing in “site:facebook.com ai”.
+We also have search engines that have specific functions. One example is Shodan, you can look up devices here that are connected to the internet. Whatever it is as long as it is connected to the internet. 
+Censys is like Shodan but this search engine is more specific as it focuses on certificates, websites, protocols, and other internet assets. To set them apart is, Shodan can examine the service banners of TCP, while Censys can analyze it by going bit-by-bit.
+VirusTotal is another website that we can use to examine files via uploading them or the url of the file. 
+HaveIBeenPawned takes your email address and scans if it has appeared in a leaked data breach. 
+The CVE (Common Vulnerabilities Exposures) program, is a dictionary of vulnerabilities. 
+Exploit Database, is also a dictionary of approved exploits. These codes are well tested and marked as verified. Uses of these codes aren’t ethical if no permission from the company or organization was given. 
+GitHub, this is also a large database wherein we can find codes, CVEs can also be linked here, exploit codes. Just about anything that a software might upload to. 	
+We also have social medias that we can use when it comes to looking for information about someone.  
+This concluded with a very short study session for the day. Learning how to navigate the web in a much more efficient way. 
+
 ### DAY 6 – THE CHALLENGE OF LEARNING ## 
 As I get more into learning about what cybersecurity is, it dawned me that my current learning method wasn’t yielding the results I had hoped for. I often just jump into a topic, read it and understand it, move one and whatever topics I have learned that day will be summarized the next day before I start studying. 
 
@@ -188,7 +200,7 @@ I did understand it, but only on a shallow level, I didn’t know how to correla
 
 And that’s when I stumble upon Justin Sung, he’s a YouTuber that has dedicated his life on researching what is learning, how does it happen, and not just what are the best methods to learn. 
 
-The concept of putting high enough load and effort for the brain to change in a way that it’s easy to learn to understand concepts, correlate them, master them, and retain them. Applying this method took me double the time to finish a subject but I am happy that I get to learn hard, and not just the easy way. I am enjoying learning cyber security and have found great joy in the way I currently learn. There still needs to be improvement, and I am glad I am aware of it and I am here for it. 
+The concept of putting high enough load and effort for the brain to change in a way that it’s easy to learn to understand concepts, correlate them, master them, and retain them. Applying this method took me double the time to finish a subject but I am happy that I get to learn hard, and not just the easy way. I am enjoying learning cyber security and have found great joy in the way I currently learn. There still needs to be improvement, and I am glad I am aware of it and am here for it. 
 
 
 
