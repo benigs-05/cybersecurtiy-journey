@@ -227,7 +227,8 @@ Kerberos uses ticket-based authentication, the process is as follows:
 3.	To access a service, the user sends a request for a Ticket-Getting-Service to the KDC
 4.	The KDC then uses the users session key, TGT, and SPN (Service Principal Name – this specifies the service and the server name).
 5.	Once the calculation is complete and verified, KDC sends a TGS along with a service session key.
-6.	The user then sends these things to the server that’s going to be used. Once verified by the server, the user is now authenticated to use that server. 
+6.	The user then sends these things to the server that’s going to be used. Once verified by the server, the user is now authenticated to use that server.
+
 NetNTLM on the other hand uses challenge-based methods for authentication, the process is as follows: 
 1.	The user requests to get authenticated to the server they want to access. 
 2.	The server generates a challenge response to be sent to the client
