@@ -244,6 +244,111 @@ Once this expands, and let’s say we have another company that is different fro
 
 We also have trusts, this can be one way or two way. One way trust relationships allow for one domain to have access to another. Two-way means they can access specific things from each other with the permissions they are given. 
 
+### DAY 8 ### 
+For day 8, I learned about the Command Line, Powershell, and Linux’s shell, Bash. 
+Command Line, unlike using the GUI is a text-based interface wherein we can use fewer resources, for automation, and for faster interaction with your system. This module introduced the different commands to navigate through your system in a easy level. Here are the commands: 
+Commands are usually in PATH directories, so whenever we use a command it searches PATH directories for the executable 
+-	set (This lists all the variables within your system) 
+-	ver (This gives the Windows version)
+-	systeminfo (gives an in-depth information about your system’s hardware and software)
+-	cls (clears the command line)
+-	more (pipelined to commands that have a long output)
+-	help (used after a command to get more information on how to use it)
+-	 ipconfig (Information about your network’s IP, like subnet mask, gateway, and address)
+-	ping (for testing connectivity by sending an icmp request)
+-	 tracert – (checks all the router path you went through before reaching the address) 
+-	netstat – (shows established connections [TCP/UDP])
+-	cd (changing directories/current directory)
+-	dir (viewing child items)
+-	mkdir (make folders/directories)
+-	rmdir (remove folders/directories)
+-	type (prints output of a file)
+-	copy (copying files)
+-	move (moving files)
+-	erase/del (deleting files)
+-	tasklist (view all processes that are running)
+-	taskkill (stops a process)
+-	chkdsk (checks the file system and disk for errors)
+-	driverquery (installed device drivers)
+-	sfc /scannow (scans and repairs files)
+Next, is the Powershell. The powershell was created for the purpose of automation and configuration management. This is more powerful compared to Windows’ CLI as this is object-oriented. That means that output will always have property and a function. These make it much more powerful since it can identify what the output is and not just a string of letters and numbers. 
+To enter powershell, we just type “powershell” in the Command Prompt. 
+Commands are structured as verb-noun, here are the commands I’ve learned:
+-	Get-Content (outputs the content of a file) 
+-	Set-Location (changes directories)
+-	Get-Command (all the commands we can use), we can filter it via -CommanType “type”
+-	Get-Help (used to view a command and how it is used)
+-	Get-Alias (get the popular commands of linux and cmd and its equivalent to powershell)
+-	New-Item (creates files or directories)
+-	Remove-Item (deletes files or directories)
+-	Copy-Item (copy files or directories)
+Along with these commands, I was also introduced to what piping is. Piping is the method of using 2 or more commands. It uses the output of the previous command as an input to further filter your commands. 
+Examples:
+-	Get-Command | Sort-Object Length (sort them based on their length)
+-	Get-Command | Where-Object -Property “Extension” -eq “.txt” (finds all objects that are .txt) (pick what it shows)
+-	Get-Command | Where-Object -Property “Name” -like “ship*” looks for objects that starts with the name ship
+-	Get-Command | Select-Object -First 5, picks which to show (first 5 files)
+-	Get-Command | Select-String functions like grep to check files and it’s content that will have the string specified.
+
+System Information 
+-	Get-ComputerInfo (functions like system info)
+-	Get-LocalUser (users/status/description)
+-	Get-NetIPConfiguration (network info)
+-	Get-NetIPAddress – (ip addresses of the interfaces used)
+Real-Time System Analysis 
+-	Get-Process (shows the processes that are running)
+-	Get-Service (services in the system)
+-	Get-NetTCPConnection – established TCP connections, address, port, state. 
+-	Get-FileHash (generates a hash, used for mionitoring, for footprint of the object)
+Scripting 
+-	Invoke-Command, these run scripts and can be sued to run remotely to another machine. 
+
+Lastly, I was introduced to what the shells are in Linux and scripting. Scripting is basically a line of commands, like a to do list, that when executed will run based on you commands. 
+But before that, we have shells. Echo $SHELL to know what shell you are using, and echo /etc/shells for the different shells you can use. 
+We have BASH (Bourne Again Shell), this is the default in Linux. Is more on the mid tier, it can be customized, but it is limited. Can be used for automation, and configurations. Has tab feature, and history.
+Next is Fish (Friendly Interactive Shell) – beginner-friendly, customization is good, it comes with highlighting, simple syntaxes, and even auto correct. 
+Then, ZSH (ZShell) – modern shell, tab completion, also has customization, and has great scripting capabilities. 
+For scripting: 
+To first create a script, we first create a file that has the type .sh. example: Nano script.sh
+Every script will start with a shebang, #!, this tells your system what shell you are using. 
+example: #!/bin/bash, this uses bash.
+Example code: 
+Nano simple_script.sh 
+
+Inside simple_script.sh:
+#!/bin/bash
+#declares variables, these are comments. They do not alter your script. Used to make understanding what script and line does. 
+username=””
+university=””
+password=””
+
+#below uses the for function for iteration from 1-3
+for i in {1..3}; 
+do
+echo “University”
+#read is used to input our answer to the variable. username in this case
+read username
+echo “University:”
+read university
+echo “Password:”
+if [ “$username” = “Benigno” ] && [ “$university” = “PRMSU” ] && [ “$password” = “102603” ]; then
+echo “Hello, Benigno! Access Authorized”
+#this makes it so that it goes out of the loop when credentials are correct 
+break
+else
+echo “You only have 3 tries, this is try number $i”
+fi
+done
+if [ “$i” -eq 3 ]; then
+echo “You have been denied access”
+fi
+
+To run this we first change the mode for the script since executable isn’t added in yet. We use the command chmod +x simple_script.sh
+To run it, we just specify the directory it is in like ./simple_script.sh
+Above shows loops like For that iterates the given numbers, and If else, for the condition that the names should match, and if not output this. Conceptually, it works like other languages so it’s very easy to learn, and I enjoyed this part the most. 
+
+That’s a wrap for Day 8, and I’m always eager to learn more! 
+
 
 
 
