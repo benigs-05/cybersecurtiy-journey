@@ -365,6 +365,7 @@ TCP/IP Model was also discussed. Basically, it’s like The OSI Model, but it on
 2.	Transport – implements the type of connection that is going to be established, TCP/UDP
 3.	Internet – IP address source and destination, logical
 4.	Link – MAC address source and destination and also the Physical layer
+
 TCP/ IP model is a practical solution of its predecessor, the OSI model. This explains what happens. While the OSI model is used for understanding how data moves and how it is encapsulated. 
 Encapsulated data looks like this 
 [Ethernet/Wifi Header][IP][TCP/UDP][DATA][Ethernet/Wifi Trailer]
