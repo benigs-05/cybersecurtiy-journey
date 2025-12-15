@@ -11,7 +11,7 @@ This repo documents my weekly learning progress as I train my career in Cybersec
 ### WEEKLY LOGS ###
 This is where my summaries will be per week on what I've learned. I will add screenshots, notes, and small writeups of the labs I've completed. 
 
-### DAY 1 ###
+### DAY 1 - INTRO TO CYBER ###
 
 For the first 30 minutes, I delved into understanding what Cyber security is and the roles within it. With this I was introduced to what offensive security and defensive security are. 
 
@@ -49,7 +49,7 @@ There are also ports, a numbering system from 0-65535 that are usually where we 
 
 And lastly for networking fundamentals is port forwarding. Port forwarding is necessary since without it only devices within the LAN can access the things inside it. Port forwarding makes it so that external devices that aren’t in our network can access the internal services inside our network. Things like firewalls are added here because they allow or deny traffic to enter or go out of a network. Another one is a VPN (Virtual Private Network), it acts like a private tunnel that makes it for 2 devices withing different networks can communicate privately with each other. 
 
-### DAY 2 ###
+### DAY 2 - HOW THE WE WORKS, LINUX ###
 For day 2, I learned the basics of how the web works and Linux. 
 
 Although I have a background in networking, we never really delved deeper into how the web works, specifically how the different protocols work. We just knew what they were and what they did. That’s why this module made me understand the different protocols that take place whenever we browse the web. 
@@ -112,7 +112,7 @@ These are the commands I’ve learned in room 2:
 And lastly some of the directories like, /etc (files here are used by your operating system), /var (this is where frequently accessed or written by services applications running ong the system, like log files), /root(the home directory), and /tmp (stores data that are only accessed once or twice.)
 That’s all for day 2!!
 
-### DAY 3 ###
+### DAY 3 - WINDOWS FUNDAMENTALS ###
 For Day 3 I finished 2 modules. Linux Fundamentals 3 and Windows Fundamentals 1. 
 For Linux Fundamentals 3, Terminal Text Editors were taught. Although we have echo and > to output to a given file, it’s only limited. That’s why [nano] is preferred when it comes to editing files. We use nano [name of file], if the file you input doesn’t exist, yet it will create that file. If it does exist it will just proceed to access the contents of that file and continue on editing it. 
 VIM was also introduced but since it’s a much more advanced editor, it was only brought up. But I do plan on learning VIM since it’s also a part of Linux. 
@@ -152,8 +152,8 @@ The UAC (User Account Control), this helps prevent malware from damaging a PC an
 Settings and Control Panel was also introduced. Settings has become more advanced in comparison to other versions of settings in lower versions of windows. Settings is more used now even in changing things that, back then, would require the control panel to do so. 
 Lastly, the Task Manager, this informs us the apps and processes that are running in our system. This gives the CPU usage, GPU, Memory, and RAM. 
 
-### DAY 4 ### 
-This day covered the last 2 modules within the Pre security path, the Window’s Fundamentals 2 and 3. This delved deeper into system configuration, and advanced system settings. This talked about how we can access the system configuration via settings or just the msconfig. System configuration typically helps with diagnosing startup issues. It covers General (this is where how we want to handle startup), Boot (We can configure boot options), Services (This lists the configured services in your system), Startup (this is used to manage startup apps, but windows currently suggest to use the task manager instead when configuring the startup apps.), and Tools (this is where you can find various tools that we can run to configure the operating system further) tab. 
+### DAY 4 - WINDOWS FUNDAMENTALS ### 
+This day covered the last 2 modules within the Pre security path, the Windows Fundamentals 2 and 3. This delved deeper into system configuration, and advanced system settings. This talked about how we can access the system configuration via settings or just the msconfig. System configuration typically helps with diagnosing startup issues. It covers General (this is where how we want to handle startup), Boot (We can configure boot options), Services (This lists the configured services in your system), Startup (this is used to manage startup apps, but windows currently suggest to use the task manager instead when configuring the startup apps.), and Tools (this is where you can find various tools that we can run to configure the operating system further) tab. 
 
 In Advanced System settings, we can locate the system properties, inside this we can configure the performance and behavior of our system. 
 
@@ -181,7 +181,7 @@ BitLocker was also briefly introduced as a feature of Windows, but it wasn’t t
 Last is the Volume Shadow Copy Service (VSS)m this creates a snapshot of the data that can be used for backup whenever needed. VSS enabled will allow us to create restore points, perform system restore, configure restore settings, and delete restore points. This can be configured via right clicking a our C drive and picking the “Configure Shadow Copies”. 
 That’s it for the 4 modules that I went through for the past 4 days. I learned about the intro to cyber security, networking, Linux, and Windows fundamentals. I never had any trouble, and enjoyed Linux more compared to Windows. Theses series of module motivated me that there’s still so much new things to learn within cyber security and I am excited for it! 
 
-### DAY 5 ### 
+### DAY 5 - SEARCH ENGINES ### 
 This started the Cybersecurity 101 course, sine I had finish Pre Security. This opened with how I can use the web and utilize the search engines within it. We start by how we can use google better, or any search engine. We can specify what type we are searching for like filtype:, we can exclude words using -, we can look for specific words in a website by typing in “site:facebook.com ai”.
 We also have search engines that have specific functions. One example is Shodan, you can look up devices here that are connected to the internet. Whatever it is as long as it is connected to the internet. 
 Censys is like Shodan but this search engine is more specific as it focuses on certificates, websites, protocols, and other internet assets. To set them apart is, Shodan can examine the service banners of TCP, while Censys can analyze it by going bit-by-bit.
@@ -202,7 +202,7 @@ And that’s when I stumble upon Justin Sung, he’s a YouTuber that has dedicat
 
 The concept of putting high enough load and effort for the brain to change in a way that it’s easy to learn to understand concepts, correlate them, master them, and retain them. Applying this method took me double the time to finish a subject but I am happy that I get to learn hard, and not just the easy way. I am enjoying learning cyber security and have found great joy in the way I currently learn. There still needs to be improvement, and I am glad I am aware of it and am here for it. 
 
-### DAY 7 ###
+### DAY 7 - WINDOWS DOMAIN AND ACTIVE DIRECTORY ###
 
 Day 7 was SUCH a fun experience since I really understood what Windows Domain is. 
 
@@ -244,7 +244,7 @@ Once this expands, and let’s say we have another company that is different fro
 
 We also have trusts, this can be one way or two way. One way trust relationships allow for one domain to have access to another. Two-way means they can access specific things from each other with the permissions they are given. 
 
-### DAY 8 ### 
+### DAY 8 COMMAND LINE, POWERSHELL, LINUX ### 
 For day 8, I learned about the Command Line, Powershell, and Linux’s shell, Bash. 
 Command Line, unlike using the GUI is a text-based interface wherein we can use fewer resources, for automation, and for faster interaction with your system. This module introduced the different commands to navigate through your system in a easy level. Here are the commands: 
 Commands are usually in PATH directories, so whenever we use a command it searches PATH directories for the executable 
