@@ -349,6 +349,52 @@ Above shows loops like For that iterates the given numbers, and If else, for the
 
 That’s a wrap for Day 8, and I’m always eager to learn more! 
 
+### DAY 9 – SOLIDIFICATION OF NETWORK FUNDAMENTALS ###
+Day 9, was an easy read, this just gave additional information about the things I learned in network fundamentals. 
+The OSI Model, 7 layers that describes how data is encapsulated and decapsulated. The layers are as follows: 
+1.	Physical Layer – this talks about the medium of data, like is it a fiber optic? A CAT6? This also talks about the transmission of data, is it using electricity? Light? 
+2.	Data Link – this is where packets are encapsulated with their frames. Their destination and source mac address. 
+3.	Network Layer – this is where the data inputs a header of source and IP destination. 
+4.	Transport Layer – implements the connection that it will establish. TCP/UDP
+5.	Session Layer – this layer focuses on establishing and maintaining a connection between the client and the host. 
+6.	Presentation Layer – this layer focuses on encryption of our data, compression, and translation.  
+7.	Application Layer – this is where the protocols that we mostly use happen, such as the HTTP, DNS, Mail, etc. 
+
+TCP/IP Model was also discussed. Basically, it’s like The OSI Model, but it only has four layers.
+1.	Application Layer – Functions like layers 5, 6, and 7 of the OSI model.
+2.	Transport – implements the type of connection that is going to be established, TCP/UDP
+3.	Internet – IP address source and destination, logical
+4.	Link – MAC address source and destination and also the Physical layer
+TCP/ IP model is a practical solution of its predecessor, the OSI model. This explains what happens. While the OSI model is used for understanding how data moves and how it is encapsulated. 
+Encapsulated data looks like this 
+[Ethernet/Wifi Header][IP][TCP/UDP][DATA][Ethernet/Wifi Trailer]
+IPs and Subnets were also discussed. 
+IP addresses, have two types. IPv4, which has 4 octets (32 bits). xxxx.xxxx.xxxx.xxxx (in binary)
+IPv6 has 128 bit since it uses hexadecimal values xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx. 
+Subnetting is the process of assigning what are the network values, and what are the host values. The most common are /24, /16, /8. We can also borrow if host bits aren’t enough or we want to conserve IP addresses by only taking in what we need. 
+IP addresses also fall into two classifications. Private and public.
+Private is used in our LAN, while Public is used to connect outside our network, like the internet. 
+Routing was also discussed, this is the logical process of sending data into the proper network. How data travels from one network to another, and what path it chooses.
+
+We also have UDP and TCP. Again, these are the protocols established regarding what service we are trying to access. UDP, are connectionless, so if the protocol requires speed over reliability we choose UDP. If reliability, TCP. 
+
+TELNET (Teletype network), nowadays this is used for analyzing TCP connections and Network information since using this for commands and configurations isn’t secure like the SSH.
+The module also introduced DHCP (Dynamic Host Configuration Protocol), this is usually what current routers do in our homes or almost everywhere, like public WiFis. What this does is it assigns our device an IP and the proper configuration of its subnet mask, gateway, network address, broadcast address, and its dns server. 
+It has 4 steps, 
+D – our device broadcasts in the 255.255.255.255 address for an IP address via UDP packetport 67. 
+O – host offers an IP
+R – client requests and clarifies
+A –host acknowledges
+And since we don’t have an IP yet, this happens in Layer 2 or the MAC address layer. It communicates via the link layer. 
+We also have ARP (Address Resolution Protocol) – this is used for connecting to an unknown IP within our network. It uses MAC address. For example 192.168.1.1 is requesting a connection to 192.168.1.2, but it doesn’t know where it is. ARP handles this by using the sender’s MAC address along with its requested IP to the broadcast address of the mac which is FF:FF:FF:FF:FF:FF, and then it’ll flood all the devices and the destination’s MAC address will reply that it has it. 
+Next is the ICMP (Internet Control Message Protocol) these is used for network diagnostics, ICMP requests are usually sent via the ping command. Ping tests the connectivity with a given address. It sends ICMP request 8, and the destination will send back type 0 if it is reached. Another one is the tracert, this traces the route that the data will take via TTL, so it knows how many hops it’ll take before it reaches the destination. Once it reaches it, the receiver will send ICMP type 0 again. 
+When it comes to routing we also have different protocols that take place in different networks. We have OSPF (Open Shortest Path First), used in medium to large networks and route is mostly based on bandwidth.
+EIGRP (Enhanced Interior Routing Gateway Protocol) – route is passed on bandwidth, delay, reliability and load. This is used on CISCO networks. 
+BGP (Border Gateway Protocol) – route is based on policies, used on the internet by ISPs.
+RIP (Routing Information Protocol) – route is based on the number of hops, and is used in small networks
+And the last topic that was discussed is the NAT (Network Address Translation), this is basically having different private IPs in our LAN with their port pair, and when it comes to connecting outside our LAN every device will use a dedicated public IP along with its port so the host knows the destination, and the device that will receive it inside the network. 
+
+
 
 
 
