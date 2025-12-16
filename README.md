@@ -382,17 +382,27 @@ We also have UDP and TCP. Again, these are the protocols established regarding w
 TELNET (Teletype network), nowadays this is used for analyzing TCP connections and Network information since using this for commands and configurations isn’t secure like the SSH.
 The module also introduced DHCP (Dynamic Host Configuration Protocol), this is usually what current routers do in our homes or almost everywhere, like public WiFis. What this does is it assigns our device an IP and the proper configuration of its subnet mask, gateway, network address, broadcast address, and its dns server. 
 It has 4 steps, 
+
 D – our device broadcasts in the 255.255.255.255 address for an IP address via UDP packetport 67. 
+
 O – host offers an IP
+
 R – client requests and clarifies
+
 A –host acknowledges
+
 And since we don’t have an IP yet, this happens in Layer 2 or the MAC address layer. It communicates via the link layer. 
 We also have ARP (Address Resolution Protocol) – this is used for connecting to an unknown IP within our network. It uses MAC address. For example 192.168.1.1 is requesting a connection to 192.168.1.2, but it doesn’t know where it is. ARP handles this by using the sender’s MAC address along with its requested IP to the broadcast address of the mac which is FF:FF:FF:FF:FF:FF, and then it’ll flood all the devices and the destination’s MAC address will reply that it has it. 
+
 Next is the ICMP (Internet Control Message Protocol) these is used for network diagnostics, ICMP requests are usually sent via the ping command. Ping tests the connectivity with a given address. It sends ICMP request 8, and the destination will send back type 0 if it is reached. Another one is the tracert, this traces the route that the data will take via TTL, so it knows how many hops it’ll take before it reaches the destination. Once it reaches it, the receiver will send ICMP type 0 again. 
+
 When it comes to routing we also have different protocols that take place in different networks. We have OSPF (Open Shortest Path First), used in medium to large networks and route is mostly based on bandwidth.
+
 EIGRP (Enhanced Interior Routing Gateway Protocol) – route is passed on bandwidth, delay, reliability and load. This is used on CISCO networks. 
 BGP (Border Gateway Protocol) – route is based on policies, used on the internet by ISPs.
+
 RIP (Routing Information Protocol) – route is based on the number of hops, and is used in small networks
+
 And the last topic that was discussed is the NAT (Network Address Translation), this is basically having different private IPs in our LAN with their port pair, and when it comes to connecting outside our LAN every device will use a dedicated public IP along with its port so the host knows the destination, and the device that will receive it inside the network. 
 
 
