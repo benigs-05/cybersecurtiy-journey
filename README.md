@@ -406,6 +406,34 @@ RIP (Routing Information Protocol) – route is based on the number of hops, and
 And the last topic that was discussed is the NAT (Network Address Translation), this is basically having different private IPs in our LAN with their port pair, and when it comes to connecting outside our LAN every device will use a dedicated public IP along with its port so the host knows the destination, and the device that will receive it inside the network. 
 
 
+### DAY 10 – CORE AND SECURE PROTOCOLS ### 
+
+For Day 10, I learned more about the main protocols that usually take place when browsing the web. I learned about the secured and not secured version of these protocols, and how they differ from each other. 
+
+DNS, or the Domain Name System is used to map keywords, or the name of the website to their corresponding IP address. This makes it so the IP address can be mapped and we can have an easy time remembering the websites that we want to visit. There are different types of DNS records, we have the A (IPv4 address), AAAA (IPv6 address), CNAME (this redirects the domain name to another domain name), and MX (this is used to know what domain will the email be sent to, so what domain is responsible for handling it). 
+
+There’s also what we call the WHOIS records, these records holds the information of the DNSs information like how the owner is, the name of the domain, when was it created, when was it last updated, etc. This gives us a clear insight of the different DNS that exists in the internet. But if you want to be a owner of a DNS not every information can be public, it can also be private. 
+
+Next is the HTTP, or the HyperText Transfer Protocol. This is used for accessing web pages. This is the protocol that takes place. Almost all of these protocols happen in the Layer 7, or the Application Layer. This protocol has commands like GET, for accessing what part of the website we’re looking to go to, and other like PUT, POST, and DEL. This uses port 80.
+
+FTP on port 21, or File Transfer Protocol. As the name says, this is used to transfer files. By logging in, if a server is available to use we can connect to it, view its files, download, upload, or even delete files that are in the server. 
+
+SMTP on port 25, or Simple Mail Transfer Protocol. Again, it is a protocol that handles how mails are SENT. This is mainly for sending mails. 
+
+For receiving files, we have the POP3 :110, and IMAP :143 (Internet Message Access Protocol). The only difference they have is that POP3 is mainly used for single device compared to IMAP, and the email in POP3 protocol, once downloaded to your device are deleted from the server. Making them unavailable if you lose your mail or accidentally delete it. This is where IMAP comes in play, IMAP let’s you synchronize your emails, meaning that these mails are securely stored online and downloading it doesn’t mean that I’s deleted after. It’s stored in the mail server, making it accessible to multiple devices of a user.
+
+These protocols are not secure, making them easily sniffed when an attacker is in your network. The different data like what you’re trying to access, what you’re putting it, the files you are accessing and downloading you user and password, the emails you are receiving and sending, are not secured. This is where TLS comes in.
+
+The Transport Layer Security protocol is an added protocol to the existing protocols mentioned to make them secure. TLS uses TLS certificate for the verification if it’s signed and given by the CA (Certificate Authority). This process of verifying the server happens during the handshake along with the giving of the public key of the server (this comes along with the certificate, if it doesn’t match it’s not authenticated). Client uses all these to match if it’s correct, if it’s authenticated and a shared symmetric session key is given for both the client and server for encryption and decryption of packets. TLS happens after the TCP handshake. TLS is implemented Layer 6, or the Presentation layer. If a security protocol is in place, this is where it is implemented. HTTPS, SMTPS, POP3S, AND IMAPS all use the TLS protocols. These makes it so that the data sent isn’t in plain text and it’s in gibberish form. Only with the key can we decrypt this data. 
+
+We also have SSH or Secure Shell, this was created to make using shells, commands, remote access, and configuration via shell, secure. TELNET, was used for this task but TELNET isn’t secure and data could be sniffed when using TELNET.  
+
+That’s why we have SFTP and FTPS, both are File Transfer Protocol, but SFTP (entire session is encrypted) uses SSH while FTPS (commands and optionally data are encrypted) uses TLS. 
+
+Lastly is VPN, Virtual Private Network – it is a secure, encrypted tunnel that lets us access remote networks as if we are a part of that network, this lets us access the resources within that network. Let’s say for example we want to access a server in Japan. We can use VPN to make it so that our device feels like it is locally connected to that specific part of Japan along with its network configuration. 
+
+
+
 
 
 
