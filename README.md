@@ -468,6 +468,39 @@ Lastly, we have packet filtering, this lets us filter different types of rules t
 5.	Apply as columns, let you add and remove columns. 
 6.	Follow stream let’s you see the exchange and the data that is happening between the protocols that take place. 
 
+Next, we have Tcpdump, this works the same, but Tcpdump is used within a terminal, so it is purely text and command-based interaction. It does however capture packets like wireshark but is limited in its deisplay since it is text-based and is much more lightweight and efficient compared to Wireshark. It still helps us analyze packets via a terminal. Tcpdump can also save captures for wireshark if you need an efficient way of capturing packets and then analyzing it in-depth in Wireshark. 
+The commands used are: 
+1.	Tcpdump -I [name of the interface], the interface we want to capture. We can reveal interfaces by using the command : ip address show. 
+2.	Tcpdump -w file, writes the captured packet to a file
+3.	Tcpdump -r file, reads a file
+4.	Tcpdump -c [count], limit the number of packets you want to capture
+5.	Tcpdump -n, makes it so the domain isn’t resolved
+6.	Tcpdump -nn, don’t resolve domains and protoclol numbers
+7.	Tcpdump -v, or -vv to make the make the packets more detailed as they are captured.
+
+Herea re the filtering expressions that we can use:
+1.	Filtering by host: tcpdump host [name of host] or [ip], tcpdump src host [IP], tcpdump dst host [IP]
+2.	By port: tcpdump port [number], tcpdump src port [number], tcpdump dst port [number]
+3.	By protocol: tcpdump [protocol used]
+
+Logical operators used are: or, and, not
+There are also advanced filtering:
+
+1.	Greater [length] or less [length] – talks about the size
+2.	Binary operators &, |, and !.
+3.	Header bytes can also be examined for specific analyzation of the bits inside a byte. 
+4.	proto[expr:size] – proto refers to the protocol used, expr, for what index we start off at first, and the overall bytes we want to capture. 
+5.	We can also use flags of the tcp, syn, ack, fin, rst, push. Example, tcpdump "tcp[tcpflags] == tcp-syn" – capture only tcp-syn flags.
+
+And lastly we have how packets are displayed 
+1.	-q quick and brief information
+2.	-e, include mac address
+3.	-A, ASCII encoding
+4.	-xx, hexadecimal format
+5.	-X, both in ASCII and hexadecimal format
+
+This was the basics of both worlds: Wireshark and tcpdump
+
 
 
 
