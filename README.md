@@ -433,6 +433,38 @@ That’s why we have SFTP and FTPS, both are File Transfer Protocol, but SFTP (e
 Lastly is VPN, Virtual Private Network – it is a secure, encrypted tunnel that lets us access remote networks as if we are a part of that network, this lets us access the resources within that network. Let’s say for example we want to access a server in Japan. We can use VPN to make it so that our device feels like it is locally connected to that specific part of Japan along with its network configuration. 
 
 
+### DAY 11 ### 
+For Day 11 I learned about what Wireshark and Tcpdump, and how the basics of how they are used. 
+
+Wireshark, it’s a software that allows us to capture and read packets on our interfaces. It is used for troubleshooting problems in our network, detecting anomalies, and learning more about how protocols that we can’t see work. Wireshark only captures and reads data and doesn’t modify it. Its sole purpose is to have a deep understanding, analyzation, and learn of what packets are and their contents, and how they behave. 
+
+I learned how it is used by either exporting already captured packet files, .pcaps our using the capture feature inside Wireshark. There are a few features that enable us to have an easier time navigating through Wireshark. These features are: 
+1.	Colouring packets for easier time to identify anomalies or different sets of rules of the color used. 
+2.	The capture button for capturing packets. 
+3.	We can also merge pcap files
+4.	View file details for an in-depth overview of our .pcap files. 
+For dissecting a packet there are a lot to it. There are the presented columns that we can see when we capture or open a .pcap file. It has the time, the source, destination, the protocol used, and the length info on the column. This column can be modified to add or remove columns. 
+A packet might have the following frames when you click on it: 
+1.	The frame layer, metadata about the capture (frame number, timestamps, length).
+2.	Source [MAC], this is for the data link layer like mac address source and destination. 
+3.	Source [IP], this is for the IP, source and destination also 
+4.	Protocol, the protocol used either UDP/TCP
+5.	Protocol errors, this is where you will see the packets that need to be reassembled. 
+6.	Application Layer – the specific protocol used
+7.	Application data, the specific data that was generated can be shown here. 
+We can also Go to a packet, find a packet (this is by using the content inside it), mark packets (highlighting it), packet comments (comments inside a packet that can be used for describing and informing), export packets (export the packets to differentiate them from your actual point of interest ), export file as objects (this comes directly from our network), and then we have expert info to look for warnings that are present like, chat, note, warn, error. They rank from least to most severe.
+
+Lastly, we have packet filtering, this lets us filter different types of rules that we want when capturing or viewing packets so that we can narrow it down to what we’re actually interested in investigating. 
+1.	Apply as filter, click on the property and apply that filter. 
+2.	Conversation filter, works if we want multiple properties that we want to filter out like the IP destination or source or the protocol that is being used etc. 
+3.	Colourise Conversation, this lets us highlight the packets related to the color we’ve chosen for easier identification. 
+4.	Prepare as filter, let’s you create a display filter that isn’t applied instantly and will be executed once you tell it so.
+5.	Apply as columns, let you add and remove columns. 
+6.	Follow stream let’s you see the exchange and the data that is happening between the protocols that take place. 
+
+
+
+
 
 
 
