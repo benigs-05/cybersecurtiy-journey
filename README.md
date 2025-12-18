@@ -442,16 +442,22 @@ I learned how it is used by either exporting already captured packet files, .pca
 1.	Colouring packets for easier time to identify anomalies or different sets of rules of the color used. 
 2.	The capture button for capturing packets. 
 3.	We can also merge pcap files
-4.	View file details for an in-depth overview of our .pcap files. 
+4.	View file details for an in-depth overview of our .pcap files.
+
 For dissecting a packet there are a lot to it. There are the presented columns that we can see when we capture or open a .pcap file. It has the time, the source, destination, the protocol used, and the length info on the column. This column can be modified to add or remove columns. 
+
+
 A packet might have the following frames when you click on it: 
+
 1.	The frame layer, metadata about the capture (frame number, timestamps, length).
 2.	Source [MAC], this is for the data link layer like mac address source and destination. 
 3.	Source [IP], this is for the IP, source and destination also 
 4.	Protocol, the protocol used either UDP/TCP
 5.	Protocol errors, this is where you will see the packets that need to be reassembled. 
 6.	Application Layer – the specific protocol used
-7.	Application data, the specific data that was generated can be shown here. 
+7.	Application data, the specific data that was generated can be shown here.
+
+
 We can also Go to a packet, find a packet (this is by using the content inside it), mark packets (highlighting it), packet comments (comments inside a packet that can be used for describing and informing), export packets (export the packets to differentiate them from your actual point of interest ), export file as objects (this comes directly from our network), and then we have expert info to look for warnings that are present like, chat, note, warn, error. They rank from least to most severe.
 
 Lastly, we have packet filtering, this lets us filter different types of rules that we want when capturing or viewing packets so that we can narrow it down to what we’re actually interested in investigating. 
