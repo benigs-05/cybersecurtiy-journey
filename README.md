@@ -533,6 +533,66 @@ Symmetric encryption deals with one private key. This private key is a shared se
 On the other hand, asymmetric encryption deals with two keys. The private and public keys. This is owned by the receiver. The public key is used for encrypting the message (this is accompanied by a certificate along with a signature stating that this host is authenticated an can be trusted) and the private key for decrypting.  Although in practice, asymmetric encryption is used for authentication and symmetric is the one used for encrypting and decrypting of data. 
 Basic math also accompanies cryptography, this is used for validating integrity of the data, the authenticity of the message, and is also used for generating keys. Math like XOR (exclusive or). Means that they must be of different value to be 1. And modulo where the answer is the remainder. 
 
+### DAY 13 – PUBLIC KEY CRYPTOGRAPHY BASICS, HASHING, JOHN THE RIPPER ### 
+ Asymmetric encryption is generally slower compared to Symmetric, that’s why this is used for the 1st phase of cryptography. This is used to authenticate the hosts that we are trying to connect to. An example of asymmetric encryption is called the RSA. 
+
+The RSA is responsible for generating a key pair for, let’s say a service, even before we connect. The public key created for that server is put into a certificate that is signed by the governing body CA. This certificate from the CA is what allows hosts to be trusted over a network. A simple example math that explains these generation of key is with using two prime numbers (in practice both of these are very large numbers containing 600 digits per number) = n. N is made public. And then we also have the totient of N. This is private. After the computation we can get e and d. (n, e) is public and (n, d) is private. The flow is as follows: 
+Alice and Bob (Bob is the Server and Alice is the Client) – Client wants to verify the server. 
+Alice sends a challenge to the server 
+The server computes It via its private keys (n, d) let’s say we have an output M. 
+M is sent back to Alice, and Alice computes it with (n, e) giving the output M’. 
+M = M’, it is authenticated. If not, it is dismissed and if we are trying to connect to a http server, the browser will show a warning. 
+
+After the RSA, we have what we call the Diffie-Hellman Key Exchange or DH. This is used to establish a shared secret wherein the symmetric key is derived from. In practice DH generates a secret that is used to generate the shared key that is used for encrypting and decrypting data after the RSA is done with the authentication. The exchange of secrets also happens using modulo and using two integers. This will result in a value k, that will have the same value. 
+SSH, when connecting to a secure shell that the SSH client doesn’t recognize, it will prompt the public key that the server we are trying to connect to and if we want to connect to it. This is a precaution for attackers that might use fake servers to connect to us instead. Checking the public key is vital here. In previous discussions, whenever there are exercises that connect to the SSH only a password is required, but that comes with its own risk. That’s why SSH also has public and private key verifications. Ssh-keygen is the command that generates these pairs and we can choose what type of algorithm we want to use. Using “man ssh-keygen”, can list the available key pair algorithm available.
+To generate a pair we use the command ssh-keygen -t [key_algo], after this it will be generated. During generation it will prompt us to answer if we want a passphrase or not. Passphrases are used to protect our private key. This is used so that whenever we want to use this private key, it will prompt what the passphrase is. This protects it so even if an attacker knows the value of the private key, an added passphrase can be beneficial. The passphrase is a key to that private key. 
+We can also specify what private key we want to use when connecting to a remote connection via ssh -i privateKeyFileName user@host. 
+ We can also store keys that we can trust in /.ssh/authorized_keys folder. Key authentication is more secure than using password to authenticate. 
+Next, is the PGP software. This is used to generate asymmetric key pairs and used to encrypt files and generate signatures. 
+We also have the GPG which is an open-source implementation of the OpenGPG standard. This is mainly used to protect the confidentiality of email transactions and can be used to sign an email message for its integrity. Gpg –full-gen-key is used to generate the key pair, this will prompt us what algorithm we want to use, which elliptic curve (this is used for added layer for computing the value), how long should the key be valid, name, and email address.  
+
+Public keys are used to encrypt the message if someone wants to contact the creator of that public key. 
+gpg --import [file_name], is used to import a key 
+gpg –decrypt [.gpg file ], to decrypt messages. 
+Next is hashing, hashing is the process of creating a one-way irreversible string of your data. That can protect the integrity of the data and provide password confidentiality. This makes it so that passwords are not stored in the servers but the hashed value of that password. Although there might be a possible hash collision, this should be preventable by a good algorithm and good security as to not create duplicate hash for attacking.
+That’s why choosing a good password, and a good algorithm can prevent our passwords from being compromised. Salt is a random generated value that is appended  or prepended to our password before hashing to produce a unique hash. This makes the value of our password unique even though we might have the same password as others. That’s why choosing a great password and applying practices that involve generating a good password is required. A weak password can be in the database known as the Rainbow Table, that have precomputed hashes. 
+Since there are different type of hashes that are valid in the Unix, Linux environment, they are classified based on their respective algorithms. Hashes may start with these prefixes to identify them: 
+$y$ - yescrypt
+$gy$ - gost-yescrypt
+$7$ - scrypt
+$2b$, $2y$, $2a$, $2x$ - bcrypt
+$6$ - sha512crypt
+$md5 - SunMD5
+$1$ - md5crypt.
+Next is how we can crack passwords. We can use software like John The Ripper or Hashcat. 
+For hashcat we can use the command hashcat -m <hash_type> -a <attack_mode> hashfile wordlist. Specifying what type of hashing algorithm is needed for us to accurately crack the hash. 
+As for files, we have what we call the HMAC (Keyed-Hash Message Authentication Code), this uses a cryptographic hash function in combination with a secret key to verify the authenticity and integrity of data. This authenticates that the person who created the message is who they are and that the data hasn’t been modified in any sort of way.  
+Then lastly, I learned about John the Ripper and how to use it. John the Ripper is a hash-cracking algorithm that uses a form of attack called a dictionary attack. Dictionary attack, works by providing the list of words that it will try from. Such as the rockyou.txt from the leaked website of rockyou.com. It can crack Window Authentication hashes, unshadow linux hashes, crack password protected zip and rar files, and crack ssh keys. Cracking hashes falls in the NP (Non-Deterministic Polynomial Time) category, as it relies on the computed hash for verification if it’s correct or not. Polynomial time on the other hand talks about problems that are solved by an algorithm in relation to time. Meaning as input increases, the runtime it takes to solve it and the load also increases in number. 
+
+John the Ripper, to work efficiently needs a list of candidates of password to check, and to know what the hashing algorithm is (this isn’t necessary since it has a function that automatically detects hashes, but knowing the hash could provide a way better result.) 
+Syntax: 
+john [option] [file path]
+Examples:
+john –format=raw-md5 –wordlist=/desktop/passwords/rockyou.txt hash.txt, this code works by providing the hash you want to crack and the list of candidates that it will use to crack the hash. We can specify the hashing algorithm via the format, but if we don’t know it can automatically detect what hash it is.
+We can also unshadow the hashes in etc/shadow in Linux. This contains all the hashed password and the data such as who the user is, and other data related to the password. Accessing etc/shadow requires root admin privileges. To crack this we can use the syntax: 
+unshadow [passwd] [shadow] , this generates the unshadowed output that can be used to feed to john the ripper via the john [option] [file path] command. 
+Unshadow, merges the data and creates an output that can be fed to John the Ripper. 
+Next, we have what we call single crack mode. Single crack mode uses a method called Word Mangling, basically this tries to change or add values based on user information. It also uses the GECOS field that stores user information that can be used to mangle the words. 
+--single can be added as a flag to enable this mode. 
+We also have Custom Rules that we can create by editing out the conf file of john. The common custom rules that we can add are how we uppercase or lowercase letters, adding numbers, and adding symbols. 
+We define the rule by creating a syntax [List.Rules:Name of Syntax]
+Below this is the modifiers that we want to add, the most common are: Az(appends the given character/s), A0(prepends the given character/s), c(capitalizes the letter positionally). After that we define the characters that we want to insert. [0-9] for numbers, [0] for isolating just one number to insert, [A-z], will include both upper and lowercase, [A-Z] for only uppercase, [a-z ] for only lowercase. An example rule would be 
+cAz”[5][!]” – this creates a rule that capitalizes the first letter and appends 5 or !. 
+We can add the flag –rule=[nameofrule] to our syntax to use it.
+We can also crack the hashes of password protected files like zip and rar. 
+zip2john, and rar2john are used for their respective file extensions. 
+zip2john .zip > zip_hash.txt , this creates an output hash of the file and generates a text that we can feed to john. rar2john also works this way.
+And lastly, we have ssh2john extracts the hash and is fed to john to crack the passphrase that is used in a private key for authentication. The code is as follows: 
+ssh2john [private key file] > passphrase.txt , this is then fed to john to crack it. 
+
+
+
+
 
 
 
