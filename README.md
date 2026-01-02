@@ -501,6 +501,40 @@ And lastly we have how packets are displayed
 
 This was the basics of both worlds: Wireshark and tcpdump
 
+### DAY 12 ### - NMAPS, CRYPTOGRAPHY 
+
+For Day 12, I learned about what NMAP is a network scanner for live hosts, services, and the hosts’ ports. We can identify live hosts via nmap -sn [IP/Subnet/Target/Hostname]. This will resolve the output of all its specified targets if it’s up or down. And -sL when it lists the target, no scanning is done and just lists the specified range. It uses ARP protocol when it’s within its local network, and ICMP when it’s outside the network. 
+Aside from the host, there’s also port scanning, and example would be -sT. This checks TCP ports via communicating with them with a full TCP handshake. A full TCP handshake will be initiated and when it’s closed, the port will immediately send an RST packet to drop the connection. -sT scans the common 1000 TCP ports before stopping. 
+Another version of it is called the -sS, this is stealthy compared to the -sT as this only sends a SYN packet. When the port responds with a SYN-ACK, NMAP doesn’t complete the handshake and responds with a RST packet.
+
+We can also scan UDP ports via -sU. Packets here are often empty but it does send payloads when it knows the protocol being used fro reliability purposes. When it doesn’t respond that it’s unreachable and the connection goes through, it’s open and if it does respond it’s closed. 
+
+Since in default it scans 1000 common ports, we can limit it by the flag -F that only scans 100, and we can also input the range of ports via p[range].
+
+We can also detect the version of the hosts device, and what services the ports are using, and force scan. -O for OS detection, -sV adds the service, and -Pn scan the hosts that are appeared to be down. 
+
+We can also control how fast and how many probes it uses since security protocols might trigger if we go to fast, and we can also use this to manage the resources of our device. 
+We can add the -T flag along with its value to set how fast we are to scan it. T0-T5, with T5 being aggressive and takes the fastest. 
+--min/max-parallelism <num of probes> and --min/max-rate <number>, and we can specify the waiting time for a target host via –host-timeout.
+Lastly, we can change the outputs we are getting by using -v for verbose to -vvvv if we want it very detailed. We can also use -d for debugging. We can also save these files based on the type we want them to be 
+-oN (normal output), oX (XML), -oG (grep-able), -oA (all majot formats.)
+
+Next is Cryptography, cryptography in short makes sure that we are safe by ensuring secure communication over a network. It deals with authentication, authenticity, confidentiality, and the integrity of the data that is moving within the network. Cryptography is important as it protects us and our data from sniffers and attackers that may want to steal, alter, or get information from the packets that we receive, it protects sensitive data, and makes sure that who we are talking to is that person and not just someone impersonating him/her. 
+
+The key terms when it comes to cryptography are: 
+1.	Plaintext, this is the raw data that we are trying to send to someone. 
+2.	Cipher, this is the algorithm that is the foundation of encrypting and decrypting a message. This is made public as we have keys that we used when it comes to encrypting or decrypting or both. 
+3.	Ciphertext, this is the secure data that is received or sent once the cipher is applied. 
+4.	Keys, we have public and private or shared keys that are used to encrypt and decrypt data. Keys are made private and not sent over the web unless it is asymmetric encryption where the sender needs to have the knowledge of the public key. 
+An example of encryption and decryption would be the Caesar Cipher. This basically shifts the keys of a given word with a constant number. This means that if we shift password to 5 keys the resulting answer would be – ufxxbtwi. That is the process of encrypting. And to decrypt it we need to know the value or brute force it by checking every number of key shifts. That is called decrypting. This is the process of cryptography. 
+
+In encryption we have 2 types. We have what we call Symmetric and Asymmetric encryption. 
+Symmetric encryption deals with one private key. This private key is a shared session key that is used to decrypt and encrypt messages. Both parties decide on this key and use it together. This is called a shared session key. 
+On the other hand, asymmetric encryption deals with two keys. The private and public keys. This is owned by the receiver. The public key is used for encrypting the message (this is accompanied by a certificate along with a signature stating that this host is authenticated an can be trusted) and the private key for decrypting.  Although in practice, asymmetric encryption is used for authentication and symmetric is the one used for encrypting and decrypting of data. 
+Basic math also accompanies cryptography, this is used for validating integrity of the data, the authenticity of the message, and is also used for generating keys. Math like XOR (exclusive or). Means that they must be of different value to be 1. And modulo where the answer is the remainder. 
+
+
+
 
 
 
