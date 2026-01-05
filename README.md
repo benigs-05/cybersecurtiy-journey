@@ -591,6 +591,48 @@ And lastly, we have ssh2john extracts the hash and is fed to john to crack the p
 ssh2john [private key file] > passphrase.txt , this is then fed to john to crack it. 
 
 
+### DAY 14 – Exploitation Basics ### 
+For Day 14, I learned the basics of exploitation, and how to use Metasploit. 
+As an introduction I was exposed to Moniker Links and the exploit revolving around it back in February 13, 2024. It revolved around Outlook’s vulnerability in relation to moniker links inside emails. 
+Moniker Links are COM object references that can be represented using URLs that specify resources that can be a part of an email that was sent. When clicked normally, this prompts a dialog box. This will warn the user and then ask if it wants to open it. But this could be misclassified by using the character “!”. There is a bug that’ll treat the moniker link as an okay url and will continue to access the resource. 
+Let’s say we want to attack someone via this method, we will create a hyperlink that will be sent to the victim that will contain a file://IP/test!exploit... 
+This will misclassify it and since it is misclassified it won’t trigger the Protected View and will trigger an automatic authentication. This is where the exploit comes in. The attacker has a device, that’s the machine IP that was used in the hyperlink. It also has a fake server set-up. When the victim clinks the link it will try to authenticate itself via the server since it is accessing a resource from the attacker’s machine. The server will send the NTLM challenge and then the user will send its username along with the NetNTLMv2 response. Since we already know all the data except for the password. Cracking the password offline via tools like John The Ripper can be possible. 
+
+Next, we have the introduction for Metasploit.
+
+Metasploit is an exploitation framework that can be used in the cyber security world. Metasploit supports all phases from inputting information to post-exploitation. 
+
+Metasploit is an exploitation framework that supports the exploitation phase and has 3 distinct parts. The command to run the terminal of Metasploit is the msfconsole that uses the Metasploit framework that is not an OS since it is not interacting with the OS but with the framework itself. We also have modules, that are also executed by the Metasploit framework which are predefined software within the framework that are not standalone programs. Tools, such as msfvenom, are standalone programs that are executed by the OS since they are not part of the Metasploit framework. 
+The main components of Metasploit are as follows: 
+Vulnerability – a weakness in the target’s services that might be misconfigured, low security, or weak protocols in place. 
+Exploit – exists in the attacker’s system, specifically the Metasploit framework. Exploits interact with the vulnerable services in a way that can cause an unintended irregularity in the target’s execution state. 
+Payload – exists on the Metasploit Framework and is delivered to the target’s system, and executes within the execution context. 
+
+The available msfconsole commands can be viewed via help. This will list the available commands with their description. Aside from the specific commands from Metasploit, it also supports most Linux commands. When using a module, you need to invoke the command “use” followed by its path. Payloads are different as they are set via “set [name of payload]”
+Once inside a module, you can invoke the command “show options” and int will show the parameters within that module. These parameters will also show a description of what it is and it will also show what parameters needs to have value. 
+
+We can also use “search [keyword]” if we’re looking for a specific module with that name, the type of us that it will run, what type of exploit it is, etc. There are typically 5 command prompts, we have the regular terminal (this is outside of the Metasploit console. This is our shell). We have the Metasploit console, and then we have The Metasploit console when it has a module selected. We have a Meterpreter session, and we have a shell that is given by the Meterpreter when we invoke the command “shell” 
+
+Talking about Meterpreter, this isn’t a regular command prompt like a shell. As this doesn’t live on the disk but lives in the memory alongside other processes. Meterpreter also communicates over the network and it can be encrypted to avoid detection. Meterperter acts a C2 agent. It has its own set of commands, that have their set of functionalities and these are handled by the modules. A meterpreter session can inlined or staged. When it is inlined, the meterpreter session is active even before the session is established. It sits locally and is just idle when this happens. When it is staged, it usually opens after a connection is established. Meterpreter session let’s us interact with the device and is part of the post exploitation stage. 
+
+Modules have different types, we have Auxiliary, Encoders, Evasion, Exploits, NOPs, and Payload. 
+Auxiliary are supporting modules like scanners, crawlers, etc. 
+Encoders encode the exploit and payload. 
+Evasion helps with evading antivirus to avoid detection. 
+Exploits, as we’ve mentioned, capitalizes on the vulnerabilities to alter a system’s behaviors that will create an execution context. 
+NOPs, this provides buffers for payload for specific sizes. 
+Payloads are the code delivered through the target system and executed within the execution context. Payloads can be categorized into four types. Adapters (these are used to convert to different formats), Singles(Self-contained payloads that are bulk in size, these are used for faster executable payloads), Stagers (These setup the connection and downloads the Stages), Stages (This is the actual full payload.) Both allow the use of larger payloads in comparison to inline. 
+Post Exploit, these either gather, escalate, interact with files, etc.
+
+Next is the Exploitation Process. The following are the steps on how I perceived the flow: 
+1.	Scanning your target(s). Can be multiple, can be one. But usually it starts with scanning the target through their ports and looking at what services are running their. We can invoke commands that can identify vulnerabilities in the system with nmap. 
+2.	After the scan, and we now know the vulnerability. Although there are auxiliary modules that we can use to further refine our exploit. We can look for specific modules that can aid us in exploiting the vulnerability present in the system. 
+3.	After choosing an exploit related the vulnerability, we can choose a payload. An example would be a reverse_tcp that will return a meterpreter session. When run, the attacker will listen for incoming connection from the target which has an outbound connection to our IP and specified port. After the connection has been established, a Meterpreter session will be given to you. 
+4.	When a meterpreter session has been created, this is now the post-exploitation part where we can gather more information, elevate our privilege, even spy on our subjects, manipulate their system, collect their files, etc. Invoking the command help, let’s you see the possible commands with a meterprer. Things like hashdump is possible. 
+There’s also a tool that is called msfvenom and this basically translates modules into a format you want it that’s based on the target’s system or OS.
+This was the process that I did with the Blue activity where I had to exploit the system by applying all these things. This was a fun room and I enjoyed it a lot since it helped me build my foundation on how exploitation works. 
+
+
 
 
 
