@@ -632,6 +632,76 @@ Next is the Exploitation Process. The following are the steps on how I perceived
 There’s also a tool that is called msfvenom and this basically translates modules into a format you want it that’s based on the target’s system or OS.
 This was the process that I did with the Blue activity where I had to exploit the system by applying all these things. This was a fun room and I enjoyed it a lot since it helped me build my foundation on how exploitation works. 
 
+### DAY 15 – WEB APPLICATION BASICS ### 
+For this room, it gave me a brief rundown on what the Web is and the parts that make it put. 
+
+Frontend – is the appearance that we see whenever we browse. It has three parts, HTML (The structure of the webpage, and content of the webpage), CSS (This is what give customization of how the webpage will appear), and JavaScript (This gives the functionality of the webpage).
+Backend – these are the things that we don’t see also gives additional functionality and foundation for our webpage. It has 3 common parts. Database (This is where data is stored, retrieved, changed, and managed), Infrastructure components (These can be made up of servers, physical devices like routers, and software that support the webpage), and WAF (Web Application Firewall, this filters out what goes in and out of our Web Server)
+Frontend and Backend coexist with each other to build a working and functional website. 
+Going back to webpages, we access them by typing out a URL like facebook.com, youtube.com, or Instagram.com. These are examples of domain and they are a tiny part of the URL or the Uniform Resource Locator. The URL has many parts, below is an example:
+http://user:agent@tryhackme.com:80/file?id=1#task3
+
+http is the scheme or the protocol used. 
+User:agent is a key value pair of user and password that is used for authentication. Although this practice isn’t used since this exposes sensitive information from the URL. 
+
+Tryhackme.com is the host or domain. This is the website that we are accessing. 
+80 is the port that corresponds to the protocol used. 
+/file is a specific part of the page that we are trying to access.
+
+?id=1 is called the Query String that is used for user input, usually when searching for something within the domain 
+
+#task3 is a fragment and it points to a specific part within the webpage. With this example it’s In path /file that is pointing to task3, so this is existing somewhere in the path.  
+
+But in order to see the contents of the webpages, there exists a conversation with the client and the server that makes this happen. These are called HTTP messages and is broken down into two. 
+
+HTTP request and HTTP response. 
+
+HTTP request is from the client side and is sent to the server. It contains the Start line which has the HTTP method, the path, and the protocol with its version. 
+HTTP method are commands that we are instructing the server to do. The methods are as follows: 
+1.	GET – this fetches data from the we server. Like accessing a different part of the webpage. Whenever we use GET URL is reflected. So security is advised here, specially for sensitive data. 
+2.	POST – updates or creates data to the server. 
+3.	PUT – this replaces or updates, for full updates 
+4.	DELETE – removes data
+5.	PATCH – updates resources, these are partial updates , modifies 
+6.	HEAD – this retrieves headers 
+7.	OPTIONS – shows what methods are available. 
+8.	TRACE – for debugging, shows methods that are allowed. 
+9.	CONNECT – creates a raw TCP tunnel, can be used when there is a proxy. 
+
+
+Below that is the Header, this contains additional information that is in the form of key value pairs. We have the content-type, or what browser we are using, the domain, or even the cookie (this is a stored information about previous sessions).  
+An empty line, which marks the end of the header and the start of the body. 
+
+The body, this usually contains the data that we are trying to send to the server. The body can have different types, the common 4 are: 
+URL encoded – key value pairs that are separated by =, per pair is separated by the character “&”. 
+Form Data – Per data is separated by a boundary string. This is mainly used for uploading, downloading or sending files. 
+
+JSON – these are also value pairs that is separated by “:”, this is used for structure. 
+
+XML – Data in here is structured within tags similar to HTML formatting.   	
+
+The server then responds to this with a HTTP response. 
+This has a Status line, contained here are the HTTP version, Status Code (the value response of the web server), Reason phrase (The explanation for the status code).
+Below are the Response and the allocated code for it. 
+
+Informational Response (100-199) – partly receives and still waiting for the rest 
+Successful Response (200-299) – received and worked. 
+Redirection message (300-399) – means that the website relocated to somewhere different
+Client Error Responses (400-499) – missing, problem with request from client. 
+Server-Error Response (500-599) – server encountered problems 
+Below the status line is the header which consists of key-value pairs too. It can contain the date, content-type, the server handling it, or even cache-control (this is a temporary storage of data. So you don’t need to load it all up again but is stored there until it timeouts.)
+
+But we also have what we call the Security Headers. By the word itself, these are used to improve a secured interaction with the server and client against bad actors. Below are 4 examples: 
+
+Content-Security-Policy – this basically permits where content comes from and which are reliable. 
+
+Strictly-Transport-Security – this is used for ensures that the browser connects to HTTPs
+X-Content-Type-Options – this is to combat against guessing what the MIME type is and instead trusts the Content-Type to handle data detection since this can be used to malicious codes.
+
+Referrer-Policy – this controls if the URL is going to be sent or not. This controls the amount of information sent. This can be configured so only the scheme is sent, or only the domain is sent, or the full URL sent. 
+
+Above is a great way to apply security to our web servers so sensitive information can’t be sniffed easily and can protect us from browsing. This is how the client-server communicates whenever we access anything in the internet. 
+
 
 
 
