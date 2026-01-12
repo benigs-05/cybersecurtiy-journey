@@ -702,6 +702,22 @@ Referrer-Policy – this controls if the URL is going to be sent or not. This co
 
 Above is a great way to apply security to our web servers so sensitive information can’t be sniffed easily and can protect us from browsing. This is how the client-server communicates whenever we access anything in the internet. 
 
+### DAY 16 – JavaScript Essentials ### 
+The JavaScript language. This language, an interpreted language, is used to define the functions and actions of a website. It’s constructed the same as how other programming languages are constructed. It has variables, operators, data types, loops and functions to create the actions that we want. 
+
+JavaScript, in relation to HTML, has two types. It can either be internal or external. 
+
+Internal means it’s basically inside the HTML and is coded in it, external means It’s outside the HTML and is in a file of its own that has an extension of .js that is called in the HTML. 
+Internal or external JS can be verified through looking at the page source. 
+With JavaScript we can create dialogue boxes that can prompt a user for an input. Here are some examples: 
+alert (“YOU ARE HACKED”). This generates a dialogue box with this text along with an ok button. 
+prompt (“How old are you?”). This outputs the text and creates a blank form which you can input from. This will return a value or null based on your input.
+confirm (“Are you 18?”). This generates a true or false value with an ok and cancel. 
+These dialogue boxes or prompts can easily be bypassed if programming is bad and security is weak. A simple inspect in the page source can easily reveal what the logic of the page is. Which can cause the website to be compromised. These are client-side authentication which is not a good practice to implement when building a website.
+
+With that being said, viewers can be slowed down by obfuscation (adds code, shortens, makes it so the logic doesn’t make sense at an instant) and minification (shortens the code) of the source code. This doesn’t mean that an attack can be stopped though, some websites provide de-obfuscation and de-minification.
+
+That’s why the best practices are, we shouldn’t rely on client-side authentication, refrain from adding untrusted libraries, and avoid hardcoding sensitive information, and obfuscate and minify source codes.
 
 
 
