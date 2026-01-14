@@ -720,6 +720,45 @@ With that being said, viewers can be slowed down by obfuscation (adds code, shor
 That’s why the best practices are, we shouldn’t rely on client-side authentication, refrain from adding untrusted libraries, and avoid hardcoding sensitive information, and obfuscate and minify source codes.
 
 
+### DAY 17 – SQL FUNDAMENTALS ### 
+
+Day 17, was about learning the fundamentals of SQL. SQL is a part of the backend side of a website or just about anything that might store, retrieve, or manage a collection of data. 
+
+SQL or the Structured Query Language is a language that is specifically used for relational databases which can manage the collection of data that we create. 
+
+Relational databases, on the other hand, is a type of database that focuses on data having relationship with other data. This can be distinguished by a primary key(is a unique identifier to the table that will have other data related to it), or a foreign key (a foreign key is a primary key from another table). We can then use THE DBMS (Database Management System) to manage a specific or a collection of databases. 
+
+I learned about the MySQL and these are the commands that I learned with it: 
+-	mysql – u name – p used to login to your account with your database 
+-	CREATE DATABASE;
+-	SHOW DATABASES;
+-	USE db_name  switches to a specific database
+-	DROP DATABASE db_name  deleted a database
+-	CREATE TABLE table_name ( book_id INT PRIMARY KEY, book_name VARCHAR(255), publication_date DATE); an example of creating a table within the database that we’ve chosen. 
+-	SHOW TABLES; 
+-	DESCRIBE table_name; describes the columns within it
+-	ALTER TABLE table_name modify something about the table
+-	CRUD OPERATIONS (Create, Read, Update, Delete), these are the basic command when it comes to accessing data. 
+-	C – INSERT INTO table_name, creates a new row along with data 
+-	R – SELECT * FROM table_name; this shows the table * is used to specify that all columns are chosen
+-	U – Update table_name 
+SET column_name = “ “
+WHERE primary_key = ‘
+Updates a table, and always use primary key since it’s unique. 
+-	D – DELETE FROM table_name WHERE column_name = value; deletes a record
+-	Clauses – this specifies the criteria of data being manipulated. THM focused on 4. 
+-	GROUP BY column_name; creates a pile of grouped data based on what we want. 
+-	 DISTINCT – used usually with SELECT and outputs values that are unique. 
+-	ORDER BY – this is mainly used for how data is presented. Ascending or descending. 
+-	HAVING – is a conditional clause, usually used when GROUPED BY is created, although not necessarily explicit to GROUP BY; 
+-	I also learned about operators which just returns Boolean values, LIKE, AND, OR, NOT, EQUAL TO, NOT EQUAL TO, LESS THAN, GREATER THAN, LESS THAN OR EQUAL TO, GREATER THAN OR EQUAL TO. These can be used to further filer out data that we want to see. 
+-	FUNCTIONS, these are commands that does a specific job and works on each row individually. 
+-	CONCAT() – used for merging SELECT CONCAT (name, “string“, category, “string”) AS column_name FROM table_name; or we can use GROUP_CONCAT();
+-	SUBSTRING() – shows the given string based from your parameters SELECT SUBSTRING(column_name, 1, 4) AS name FROM table_name; 
+-	LENGTH() - returns number of characters
+-	COUNT() – returns number of rows. 
+-	SUM() – sum of a given data field, MAX() – form ax value, MIN() for minimum value. 
+Above are a few examples of the basic syntax of MySQL and is used to manage data. This helped me understand how data is stored and how it can be managed, and how important it is inbeing organized. 
 
 
 
