@@ -760,6 +760,49 @@ Updates a table, and always use primary key since it’s unique.
 -	SUM() – sum of a given data field, MAX() – form ax value, MIN() for minimum value. 
 Above are a few examples of the basic syntax of MySQL and is used to manage data. This helped me understand how data is stored and how it can be managed, and how important it is inbeing organized. 
 
+Burp Suite is an exploitation tool used for penetration testing for web applications and mobile applications. Burp Suite is used for intercepting packets, viewing them, modifying them, for testing attacks and for automation of attacks to a server. 
+
+Knowing this, I was introduced to the tools within Burp Suite, these were: 
+1.	Burp Proxy – this sits between the client and the web server. This is what makes it possible to intercept HTTP messages and modify them. 
+2.	Repeater – messages that are from the proxy are usually sent here, and this is where we manually modify HTTP messages to test our hypothesis and carry out these hypotheses by sending them and checking if an unintended behavior will occur. This helps us understand how the target behaves.
+3.	Intruder – this is mainly used after the repeater since this is where our attacks are automated and validated. Information gathered from the repeater is crucial here since knowing how the target responds means a higher chance of our attacks working. 
+4.	Comparer – this is used for comparing two outputs and checking the tiniest differences. 
+5.	Decoder – this analyzes data mainly asks the questions why is it represented this way, or why was it chosen to be like this. This can help in understanding why the packet is the way it is 
+6.	Sequencer – this checks the randomness and predictability of tokens like a session ID. 
+The introduction mainly focused on using the Burp proxy, the browser within Burp itself and configuring a proxy via an extension. 
+We can capture packets by interacting with a web application we want, and we can intercept them by turning the intercept under the Proxy Tab. Turning the intercept on will delay the packet from reaching the target and we’ll have to modify and analyze the packet. HTTP messages contain data that can be helpful for us when it comes to penetration testing. A simple attack could be an XSS where scripts can’t be loaded into forms via the website but can be edited in the HTTP message. 
+
+This room showed me a glance of how powerful Burp can be when it comes to security assessment of a website application. 
+
+Next is Hydra, although this was such a short room. A new tool has been added to my knowledge. 
+
+Hydra is an online password cracking tool for applications that have a login form like SSH, HTTP, FTP, RDP, and SMB. This can be compared to John the Ripper as it uses a wordlist but the only different thing is John the Ripper is offline and safer compared to Hydra as it is online.
+
+Hydra sends actual login attempts so using it blindly can activate security measures such as locking us out, limiting our responses, blocking us that can compromise our attack. So reconnaissance before using it is a must to achieve better results. 
+
+Tyhackme showed me two examples. SSH and HTTP 
+For ssh, the code is as follows: 
+
+Hydra -l <username> -P <path to wordlist> <target_IP> -t 4 ssh 
+-t limits the number of threads used so it doesn’t overload and send too many responses that can activate security measures. 
+
+For HTTP, the code is as follows: 
+For http, the type of message is used, so in this case it’s a POST message. 
+Hydra -l <username> -P <Path to wordlist> <target_ip> http-post-form “/location:username=^USER^&password=^PASS^:Prompt when login fails”  
+
+I was also introduced to a reconnaissance tool called Gobuster, this tool is also used for penetration testing and for security assessment. This is a tool that enumerates possible files, paths, and domains that aren’t linked or advertised within a website. This tool also uses a wordlist to check different responses to see if something exists or not. 
+
+I was introduced to three types of it: 
+1.	Web directories/Files – this is a path from a domain that isn’t seen or advertised but exists if manually typed in the URL. These can contain admin pages or secrets that are sensitive and shouldn’t be publicly available. 
+The code is as follows gobuster <command> and then followed by flags that can help, in this case the code is gobuster dir –u “URL” -w <path to wordlist>  -x .php, .js  (x just specifies what type are we looking for) 
+2.	Subdomains – so these are the child domains that coexists with a main domain that is registered in the DNS server. So when checking for subdomains, we basically interact with the DNS server to check if if a certain subdomain exists or not. 
+The code is as follows: gobuster dns -d domain -w <path to wordlist> 
+
+3.	VHosts – or Virtual Hosts, these are subdomains that may or may not be registered in the DNS server and I can be configured within the web config instead. So instead of checking with the DNS server, we now check responses as this sends different host headers checking if a virtual host will respond. 
+The code is as follows: gobuster vhost -u “URL” -w <path to wordlist>, but shortening it like this can cause us to miss vhosts since a lot use FQDNS and simple changing the Host to admin is different from admin.thm.com 
+
+so we can use the code gobuster vhost -u “URL or IP” -d example.thm -w <path to wordlist> - - append-domain --exclude-length 250-320 
+
 
 
 
