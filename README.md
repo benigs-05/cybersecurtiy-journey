@@ -847,6 +847,90 @@ sqlmap -u “.com “ –db (This is for enumerating the databases)
 sqlmap -u “.com “ -D name_database –tables (this is for enumerating the tables of the specific retrieved database)
 sqlmap -u “.com “ -D name_database -T table_name –dump, this dumps the content of that table. 
 
+### Day 20 – Defensive Security ### 
+
+For this room I was introduced to the different roles within Defensive Security. We have the SOC Analysts, Digital Forensics, Incident Response, and Log Fundamentals. 
+
+For SOC or Security operations center is a facility that has specialized workers of a security team for an organization. They are the ones that continuously monitor everything inside the company’s network. These are the logs, and these logs are sent through the SEIM, or Security Information and Event Management which serves as the centralized location for all these logs. 
+
+The SOC has 2 major purposes, to detect and to respond to alerts. 
+The SOC also has three major pillars for it to work. We have the People, Process, and Technology. They all are dependent with each other and removing 1 can cause the organization to fall. 
+
+The people are made up of workers with their specified jobs. Removing this and only relying on technology to detect alerts can cause the whole SOC infrastructure to fall. People apply judgements to these alerts and deem it if they should be prioritized or not, if they are a false positive or not. Relying on technology alone can create a lot of noise and can cause confusion on what really needs to be prioritized. 
+
+The people are usually made up of SOC Analysts Level 1-3. With Level 1 mainly being in the frontline of it all as, they apply judgement and if the scope is outside their reach and requires deeper analyzation, they pass it to level 2, with level 3 having the most knowledge. They don’t just investigate further, they use their deep knowledge to sometimes help fine tune systems, aid in the IR activities. 
+
+We also have the Security Engineer which is responsible for deploying and configuring security solutions present, and we have the Detection Engineer which creates detection rules for detecting harmful activities. 
+
+Lastly, we have the SOC Manager which oversees everything and usually remains in contact with the CISO(Chief Information Security Officer) for providing updates about the SOC infrastructure. 
+
+The next pillar is the process, these can be thought of as guard rails that helps the people follow due and right process. Without process, our human nature like laziness, overlooking details, forgetting what needs to be done can take place and can cause a lot of mistakes that can harm the organization. That’s why processes are in place to help the people do what their job requires them to do. An example of this is the Alert triage which answers the 5Ws(What, where, when, who, why). This helps SOC understand the alert better, understanding the severity of the alert and the prioritization of an alert. We also have reporting, specially if an alert needs to be escalated to the Incident Response team and the Digital Forensics team. 
+
+
+Lastly, we have the Technologies in place. These are the security solutions in place to help detect and respond to threats. An example would be the SIEM, which is the centralized location of all the logs of the organization’s activities and resources and is used for event analysis. SIEM can also aid in responding, but it’s mainly limited. We also have the EDR, or the Endpoint Detection and Response which focuses on specific endpoints like PCs, laptops, any device within the organization. This has automated response and is much better at responding compared to the SIEM. Then we have the Firewall, which monitors and filters incoming and outgoing traffic. 
+
+Next is Digital Forensics, these are specialists that apply techniques and methodologies to draw conclusions from their findings. They also preserve the truth and make it so that it is reported properly. They follow a general process that was created by the NIST (National Institute of Standards and Technology). 
+1.	Collection – this is to collect all the data within the scene and properly storing them so that it is ensured that the original data is never tampered with. Properly documenting all the evidence and data are crucial for this phase. 
+2.	Examination – this filter all the evidence that the Digital Forensics have and focuses on data that is only needed for the investigation. This can help thin out the data, filtering data that is needed for the next phase. 
+3.	Analyzation – this is where deeper understanding and correlation of data takes place and is the last part of the phase in creating and drawing conclusions from all the data that was filtered. 
+4.	Reporting – the last phase of the framework that reports, documents, and presents all the findings of the investigation. 
+Since the evidence can be found in different environments and the type of data can be different, we have different specialized forensics in place like Computer, Mobile, Network, Database, Cloud, and Email Forensics to name a few. These people specialize in different fields and are called upon to perform deeper analysis of the evidence presented. 
+
+Since Digital Forensics are concerned with investigating a scene, they are responsible for keeping the original data and making sure that any data is never tampered with. That’s why processes are also in place for this. Proper data acquisition like Chain of Custody is present. The chain of custody is a document containing logs of who found the data, when it was found, who accessed it, the description of the data, and where it was stored. That’s why Chain of custody is important as it provides logs to make sure that data all the details of the evidence is preserved and is watched for transparency. 
+
+We also have devices like write blockers to preserve the original data. This is used since sometimes when we access data, let’s say in a hard drive, systems can sometimes automatically change the metadata of evidence. Write blockers make sure that the data within the evidence is on read only so that the technology used to access the data doesn’t automatically change it.  
+
+Let’s take a quick tour in understanding a specific Windows Forensic job. Windows forensic is by far the most needed forensic since a lot of crimes involve the Windows OS. In the collection phase, two types of forensic images are collected. The disk image (the non-volatile memory that isn’t destroyed when the system shuts down and restarts) and the memory image (are the volatile memory that are logged during that session. This type of data is destroyed when the system shuts down or restarts). That’s why we have different software or tools in place that can help collect and analyze these evidences. 
+
+For disk image we have: 
+1.	FTK imager - this is used for taking disk images of a system.
+2.	Autopsy – this conducts extensive analysis of the disk imaged captured. 
+For memory images we have: 
+1.	Dumplt – this takes memory images of a system.
+2.	Volatitlity – this analyzes the memory image.
+These are only a few but it shows that we have access to tools that can aid us in collecting and analyzing the data that we have. We also have pdfinfo which analyzes the metadata of a pdf file showing who created it, when, and other metadata that can be found. Lastly, we also have exiftool that analyzes the exif metadata of images. This can show the type of camera and even where it was taken via the longitude and the latitude of the location. 
+
+Next is the Incident Response fundamentals. The Incident Response team is responsible when alerts can impact the organization and when it’s severe that it needs containment, eradication, and proper response to it.  This is when alerts are escalated by the SOC team and turn into incidents. These incidents can harm the organization and are out of scope by SOC teams responsibilities. 
+
+Below are the different types of incidents that might occur within an organization: 
+1.	Malware infections – these are programs that can damage the system and the organization, these can be in the form of files, executables, or documents.
+2.	Data leaks – these is when private and sensitive data are leaked to the public. 
+3.	Insider attack – an employer from within the organization attacks the systems
+4.	Denial of service attack – this is when the services and resources are bombarded with false requests that accessing the resources becomes impossible.
+5.	Security breaches – this happens when authorization and security is bypassed by an unauthorized person. 
+Just like the SOC team and the Digital Forensics team, the Incident response team also has processes in place to make sure that we follow protocols, and nothing is missed. SANS also provided a process for proper response. 
+PICERL 
+Preparation – This happens before the incident takes place. These are countermeasures that help the people, the technology in place, and this is structured based on company policies and by the learnings after an incident. In a way, this framework is a cycle of continuously making the process much better. This is for training people, applying additional security measures, configuring security solutions, helping in alerts and detecting alerts earlier and better. 
+Identification – This is where security solutions or techniques are in place to help identify any abnormal behavior within the organization that may turn into an incident. 
+Containment – This is when an incident has happened and devices that are involved are isolated.
+Eradication – this is when the abnormal activity or the threat, within the device is removed and deleted before it escalates to something bigger. 
+Recovery – this process helps on rebuilding the device affected and testing it before it is redeployed again. 
+Learnings – this part of the process is by far the most important as this helps in reporting as this points out the strengths, the weaknesses, the gaps when it comes to identifying and responding to the treat. This helps the organization know what to prepare for to better enhance security. 
+
+Each of these processes has a proper procedure to them via the Incident Response plan, this is a document containing the approach on how the organization handles the incident. 
+We also have the playbook which is a document on how to properly approach a specific incident and a runbook for a step-by-step execution of specific steps during incidents. 
+
+Lastly, for Defensive Security is an introduction to the different type of logs that the Defensive Security works on. The types are as follows: 
+1.	System logs – these logs are within the OS infrastructure itself and can also help in troubleshooting.
+2.	Security logs – these logs specify anything about security like authentication, authorization, and also abnormal activities within the system.
+3.	Application logs – logs of software and applications present in the system. 
+4.	Audit logs – these logs specify system changes and user events. 
+5.	Network logs – these logs provide information on the network’s incoming and outgoing traffic. 
+6.	Access logs – these logs talks about the access to different resources. 
+An example of collecting and checking logs is through the Event Viewer in windows. This application lets us see the different types of logs that are related to our system, these logs are usually identified by the ID that they have, and we can use that ID for filtering in finding a specific log. 
+The IDs that are common are as follows: 
+1.	4624 – account successfully logged in
+2.	4625 – account failed login
+3.	4634 – account successfully logged off
+4.	4720 – account was created
+5.	4724 – attempt was made to reset an account’s password
+6.	4722 – account was enabled
+7.	4725 – account was disabled
+8.	4726 – account was deleted 
+There are many more IDs available and knowing the common types can help identify and examine the logs presented within a system. 
+We also have access logs that contains all the resources that we have accessed with our system. This can contain the IP address, the HTTP request, timestamp, the status code, and even the agent used.  
+
+
 
 
 
