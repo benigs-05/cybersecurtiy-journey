@@ -928,7 +928,47 @@ The IDs that are common are as follows:
 7.	4725 – account was disabled
 8.	4726 – account was deleted 
 There are many more IDs available and knowing the common types can help identify and examine the logs presented within a system. 
-We also have access logs that contains all the resources that we have accessed with our system. This can contain the IP address, the HTTP request, timestamp, the status code, and even the agent used.  
+We also have access logs that contains all the resources that we have accessed with our system. This can contain the IP address, the HTTP request, timestamp, the status code, and even the agent used.
+
+### DAY 21 – Security Solutions (SIEM and Firewall) ###
+For Day 21, I got to explore a few security solutions in place within an organization, SIEMs and Firewalls. 
+
+In Introduction to SIEM I learned about the different type of log sources, the limitations of working with isolated logs, the importance of SIEM solution, the features of SIEM solution, the different types of log sources and ingestion, and understanding the process behind alerting and alert analysis. 
+
+Log sources, these are the recorded events that takes place within a specific environment that generate information about the event that took place. The two environment that they take place in is the Host-Centric Log sources (which happens within the specific devices) and Network-Centric Log Sources which are logs that comes from devices that monitor traffic like routers, firewalls, and IDS. 
+
+Every action we do will generate a log that can be captured, analyzed, and inspected. The problem with this is manually capturing and checking all these logs per source can take up too much time, is not efficient, hard time analyzing, and format issues. 
+
+That’s why we have SIEM solution, it is a centralized location for all the logs that are generated. This doesn’t mean that EVERY log goes here, we configure it in a way so that we filter the things that we want to see. But this also doesn’t mean that this is a foolproof solution, SIEM generates True and False positives. That’s why we have humans in place. 
+
+SIEM is a security solution since it provides centralization of logs, analyzation, correlation, aggregation, detection, alerting, and outputs it to one format that can be easily used and accessed. 
+
+In windows, logs can be viewed via Event Viewer, which was discussed from the previous day. This contains metadata of what, where, when, who. These logs can be filtered to see the desired log that we want. 
+
+In Linux, logs are stored in multiple locations that can also be accessed, we have var/log/httpd (http requests), /var/log/cron(events related to cron jobs), /var/log/auth.log and /var/log/secure (sores authentication related logs), and /var/log/kern(stores kernel related events). We also have web logs stored in Linux in /var/log/apache or /var/log/httpd
+
+Logs are ingested to the SIEM through the following methods: 
+1.	Agent – these are installed on endpoints that can capture and send logs through the SIEM
+2.	Syslog – this is used to collect data from various sources like web servers and databases and sends real time data
+3.	Manual upload – logs captured can be uploaded through the SIEM 
+4.	Port Forwarding – specification of source and destination port to where logs are sent through. 
+
+As I’ve stated from above, SIEM doesn’t ingest all types of logs. SIEM is a rule based security solution that captures logs based from the rules that it creates. Such as a rule for multiple failed login attempts, or authentication after a lot of failed attempts. These are rules that can be set in an SIEM to filter out logs that we want to see. 
+
+The next solution that was covered is the Firewall. 
+
+The Firewall is a security solution that monitors and filters traffic. This can either be in the form of inbound or outbound connections. The windows firewalls have different types. We have:
+1.	Stateless Firewalls – this type of firewall is simple. It uses predefined rules and will allow or deny connections based from its rules. It doesn’t correlate any past, present, and future connections. But instead applies its rules on individual packets only
+2.	Stateful Firewalls – this type of firewall also uses a set of predefined rules but this firewall can correlate and make relationships from past, present, and future connection that will go through. It correlates established connection and makes judgement based from session validity. Outbound and incoming connections are checked in the state table if they are valid or not and this is where connections are denied or permitted by the rules in place and if the connection is valid.  
+3.	Proxy Firewall – this type of firewall lives in the layer 7 of the OSI model or the application level that acts as a man in the middle. This has predefined rules, but this doesn’t just check the header of the packet but also its contents which can understand whether the content is safe or not and will terminate the connection if it isn’t. 
+4.	Next Generation Firewall – this firewall lives in layers 3-7 and has the richest feature and the most robust among all of them. While it also has predefined rules, correlation, decryption, analysis, it has a special function called heuristic analysis wherein it analyzes the connection and makes an educated guess if it is harmful or not. 
+
+This is where rules come in play. In rules you can specify an action (allow, deny, or forward) based from its Source IP, Destination IP, Port, Protocol, and its direction (Inbound or Outbound). In windows we configure these rules and check the existence of these rules via the Windows Defender Firewall. This can be applied to private networks or guest or public networks. 
+
+In Linux we also have a firewall framework called the Netfilter. 
+Netfilter is a kernel framework and is used as the base of utilities that manage the firewall Linux devices. Tools like iptables (widely used utility, that has the netfilter framework), nftables (successor to the iptables utility and offers additional features.), firewalld (manages the firewall and the firewall rules). These utilities configure the Netfilter framework. 
+Lastly, we have the ufw or the Uncomplicated Firewall which makes syntax easier to write and create. This makes firewall managing easier and rule creation simpler compared to the other utilities mentioned. 
+
 
 
 
