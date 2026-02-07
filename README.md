@@ -931,29 +931,33 @@ There are many more IDs available and knowing the common types can help identify
 We also have access logs that contains all the resources that we have accessed with our system. This can contain the IP address, the HTTP request, timestamp, the status code, and even the agent used.
 
 ### DAY 21 – Security Solutions (SIEM and Firewall) ###
-For Day 21, I got to explore a few security solutions in place within an organization, SIEMs and Firewalls. 
+For Day 21, I got to explore the security solutions that answer to why SIEM and Firewall are important and what makes it a Security Solution.
 
-In Introduction to SIEM I learned about the different type of log sources, the limitations of working with isolated logs, the importance of SIEM solution, the features of SIEM solution, the different types of log sources and ingestion, and understanding the process behind alerting and alert analysis. 
+Before diving into SIEM itself, I understood the problems SIEM was designed to solve. 
 
-Log sources, these are the recorded events that takes place within a specific environment that generate information about the event that took place. The two environment that they take place in is the Host-Centric Log sources (which happens within the specific devices) and Network-Centric Log Sources which are logs that comes from devices that monitor traffic like routers, firewalls, and IDS. 
+Logs are the core data that SIEM ingests, and these logs are record of events that are configured to be recorded in a system. This means that not every event is recorded, only those events that are configured to be logged. These logs comes from Host-Centric Based Log Sources or Network-Based Log Sources. 
 
-Every action we do will generate a log that can be captured, analyzed, and inspected. The problem with this is manually capturing and checking all these logs per source can take up too much time, is not efficient, hard time analyzing, and format issues. 
+Host-Centric Based Log Sources comes from endpoints, devices, or the systems itself that are human actions or system actions. Things like servers, databases, PCs, etc. 
 
-That’s why we have SIEM solution, it is a centralized location for all the logs that are generated. This doesn’t mean that EVERY log goes here, we configure it in a way so that we filter the things that we want to see. But this also doesn’t mean that this is a foolproof solution, SIEM generates True and False positives. That’s why we have humans in place. 
+Network-Centric Based Log Sources comes from mostly network devices. This can be in the form of routers, firewalls, IDS. Anything that usually monitors traffic. 
 
-SIEM is a security solution since it provides centralization of logs, analyzation, correlation, aggregation, detection, alerting, and outputs it to one format that can be easily used and accessed. 
+Each of this can generate logs, and can be checked per system. This is called isolated logs since we are checking them per system and not as a whole. This poses a lot of problems. Isolated logs create problems like, scattered logs, low context and relationship, different formats, low level analysis which in result cause us to lose time, lose context, and piece together in a bigger picture. 
 
-In windows, logs can be viewed via Event Viewer, which was discussed from the previous day. This contains metadata of what, where, when, who. These logs can be filtered to see the desired log that we want. 
+This is where SIEMs come in play, SIEMs or Security Information and Event Management. It centralizes logs in one place, it correlates them, in ingests it, in normalizes it and aggregates it, and most importantly it creates context. Context that is missing from isolated logs. This means that it has features that compliments all these solutions, it has a dashboard and summarization, it has rules that alert on what matters for the organization, it prioritizes, it stores them, it has analysis, and it has detection. 
 
-In Linux, logs are stored in multiple locations that can also be accessed, we have var/log/httpd (http requests), /var/log/cron(events related to cron jobs), /var/log/auth.log and /var/log/secure (sores authentication related logs), and /var/log/kern(stores kernel related events). We also have web logs stored in Linux in /var/log/apache or /var/log/httpd
+For logs to be ingested, we have the following: 
+1.	Agents are installed on the host-centric based log sources, that is configured on what is to be ingested in the SIEM. This is used on hosts and endpoints as This is where we usually see how the attacker behaves, this means that logs that are stored here needs to be sent reliably. 
+2.	Syslog, this is used on devices that are network-based log sources, things like firewalls, routers. As the main purpose of Syslog is to send fast. This means that it sacrifices reliability and focuses on speed. Why is that? Because networking devices’ main function is not know whether the logs reached or not. Their main function is for monitoring traffic and packets. Adding additional functionality will degrade their function.
+3.	Manual upload, these can be logs that are manually uploaded into SIEM itself. This can be used for investigation, for offline analysis and checking, and things that were sometimes missed by configurations that is needed to be analyzed. 
+4.	Port forwarding, this doesn’t mean in the NAT context. This just simply means that SIEM listens and receives on a specific port over the network. 
 
-Logs are ingested to the SIEM through the following methods: 
-1.	Agent – these are installed on endpoints that can capture and send logs through the SIEM
-2.	Syslog – this is used to collect data from various sources like web servers and databases and sends real time data
-3.	Manual upload – logs captured can be uploaded through the SIEM 
-4.	Port Forwarding – specification of source and destination port to where logs are sent through. 
 
-As I’ve stated from above, SIEM doesn’t ingest all types of logs. SIEM is a rule based security solution that captures logs based from the rules that it creates. Such as a rule for multiple failed login attempts, or authentication after a lot of failed attempts. These are rules that can be set in an SIEM to filter out logs that we want to see. 
+
+But that doesn’t mean that every event is recorded, it doesn’t mean that every log is forwarded, it doesn’t mean that all ingested logs are alerted. That’s why we have configurations (what is logged, what is forwarded, and what is ingested) and rules for what turns into an alert. That’s why we have humans in place that makes it so that the structure of it is always improved. 
+
+Non-alerted logs can be used to investigate further. It’s there for a reason. It can be used to make it so that the process and security solutions are improved. The policies, regulations, configurations, rules, technology, guidelines. All this in place is to be improved. 
+
+This is what SIEM is and how it helps and solves problems inside an organization’s defensive team. 
 
 The next solution that was covered is the Firewall. 
 
