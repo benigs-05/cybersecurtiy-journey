@@ -959,19 +959,30 @@ Non-alerted logs can be used to investigate further. It’s there for a reason. 
 
 This is what SIEM is and how it helps and solves problems inside an organization’s defensive team. 
 
-The next solution that was covered is the Firewall. 
+The next security solution introduced is the Firewall. This quickly glossed over what a firewall is, the problems it solve, the type of firewalls, and the Windows Defender Firewall and the Linux Netfilter Firewall. 
 
-The Firewall is a security solution that monitors and filters traffic. This can either be in the form of inbound or outbound connections. The windows firewalls have different types. We have:
-1.	Stateless Firewalls – this type of firewall is simple. It uses predefined rules and will allow or deny connections based from its rules. It doesn’t correlate any past, present, and future connections. But instead applies its rules on individual packets only
-2.	Stateful Firewalls – this type of firewall also uses a set of predefined rules but this firewall can correlate and make relationships from past, present, and future connection that will go through. It correlates established connection and makes judgement based from session validity. Outbound and incoming connections are checked in the state table if they are valid or not and this is where connections are denied or permitted by the rules in place and if the connection is valid.  
-3.	Proxy Firewall – this type of firewall lives in the layer 7 of the OSI model or the application level that acts as a man in the middle. This has predefined rules, but this doesn’t just check the header of the packet but also its contents which can understand whether the content is safe or not and will terminate the connection if it isn’t. 
-4.	Next Generation Firewall – this firewall lives in layers 3-7 and has the richest feature and the most robust among all of them. While it also has predefined rules, correlation, decryption, analysis, it has a special function called heuristic analysis wherein it analyzes the connection and makes an educated guess if it is harmful or not. 
+What is a firewall? In simpler terms, it is used to monitor and filter traffic. It does this job by enforcing policies and rules that can allow, deny, and forward packets. 
 
-This is where rules come in play. In rules you can specify an action (allow, deny, or forward) based from its Source IP, Destination IP, Port, Protocol, and its direction (Inbound or Outbound). In windows we configure these rules and check the existence of these rules via the Windows Defender Firewall. This can be applied to private networks or guest or public networks. 
+The different type of firewalls are as follows: 
+1.	Stateless – this type of firewall lives inside the OSI Model Layer 3 and 4, it enforces rules by checking the IP address (destination and source), the protocol, and the port number. Basically, it checks the packet based on its rules. It doesn’t understand states.
+2.	Stateful – this type of firewall is the same as stateless but with an additional feature. It validates the status of connection, blocking or allowing it based on the status, if it’s already established, it’s allowed. If a new outbound connection tries to connect, it checks its table if it’s coming from a valid connection. If it isn’t it’s blocked
+3.	Proxy firewalls – this type of firewall also has predefined rules, it can also understand the state of connections, but this firewall doesn’t just inspect the packet. It acts as a man in the middle which creates a new connection for receiving and sending. It inspects and understands the contents of application-level protocol. It checks URLs, headers, payloads, and the content itself, HTTP messages. If rules are triggered for actions to be enforced, it can either terminate the connection or send it to the receiver. 
+4.	NGFW Firewalls (Next-Generation) – this firewall has all the functions of the mentioned firewalls, with additional features that can help in enforcing traffic. It’s heuristic analysis or behavior analysis, this basically works on probability and analyzation if a behavior is normal or not. It can look normal and pass its rules, but if it analyses it and understands that it’s acting weirdly, it can block the connection. This also has database for signatures and patterns. So this works for known attacks and even some zero-day attacks. This creates false positives, that’s why these logs should be sent to the SIEM for deeper analysis. 
+The rules, as mentioned above can either be allowed, denied, or forwarded. You can specify the IP address (where it’s coming from and its destination), the direction of the traffic (inbound or outbound), what port it came from, and the protocol in place. Knowing this, we can create rules that will match the organization’s policy. 
 
-In Linux we also have a firewall framework called the Netfilter. 
-Netfilter is a kernel framework and is used as the base of utilities that manage the firewall Linux devices. Tools like iptables (widely used utility, that has the netfilter framework), nftables (successor to the iptables utility and offers additional features.), firewalld (manages the firewall and the firewall rules). These utilities configure the Netfilter framework. 
-Lastly, we have the ufw or the Uncomplicated Firewall which makes syntax easier to write and create. This makes firewall managing easier and rule creation simpler compared to the other utilities mentioned. 
+In Windows, we have the Windows Defender Firewall for viewing, managing, and creating custom or already predefined rules. 
+
+In Linux it’s quite different as we have the Netfilter framework that, is a kernel framework meaning that it lives inside the kernel itself and manages the network traffic. This doesn’t have a language on its own that’s why we have tools to configure and manage it. 
+
+The Netfilter framework, has tools below that manage and configure it:
+
+1.	Iptable – this is a tool used for creating rule and is used to configure netfilter rules.
+2.	Unftable – this is the upgrade to the iptables with some additional features to it, is also used to configure netfilter rules.
+3.	Firewalld - this manages the rules, and the firewall itself by using iptables or nftable as bases. 
+4.	Ufw – Uncomplicated firewall is used for simpler syntax for configuration.  
+
+
+
 
 
 
