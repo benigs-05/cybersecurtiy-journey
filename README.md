@@ -981,11 +981,41 @@ The Netfilter framework, has tools below that manage and configure it:
 3.	Firewalld - this manages the rules, and the firewall itself by using iptables or nftable as bases. 
 4.	Ufw – Uncomplicated firewall is used for simpler syntax for configuration.  
 
+### DAY 22 – SECURITY SOLUTIONS (IDS Fundamentals and Vulnerability Scanner) ###
+The last 2 Security solutions that have been introduced to me were IDS Fundamentals and tools regarding Vulnerability Scanners, though this mainly talked about OpenVAS 
 
+Let’s start with IDS or Intrusion Detection System is a security solution that also monitors traffic. An IDS, just like a firewall is used to monitor traffic. But this doesn’t mean that they function the same. A connection might’ve been allowed by the firewall but that doesn’t mean that it’s not malicious. That’s why we have IDS in place to monitor and check the behavior of the network traffic based on different methods. Methods can be based on its signatures, anomaly-based, or can be both. This means that it doesn’t just analyze the network traffic, it checks its patterns, behaviors, known attacks, and baseline of what is normal. It then evaluates the network traffic and generates an alert when it evaluates when something within the traffic is of threat.
 
+There are 2 types of deployment modes in IDS: 
+1.	Host Intrusion Detection System (HIDS) –these are installed on the machine or the endpoints itself to monitor the connection of that system. 
+2.	Network Intrusion Detection System – this type of IDS focuses on the whole network that is within its scope of the entire infrastructure of an organization to watch the traffic, regardless of any host. This basically provides a centralized view of all detections inside the whole network. This means that interfaces that doesn’t have NIDS even if it’s inside the network won’t be analyzed and monitored
 
+With these 2 deployment modes, we also have its detection modes. There are 3: 
+1.	Signature-based IDS – this type of IDS alerts and monitors traffic based from the signatures or patterns of attack that are known which are preserved in their database. It means that when a similar attack happens that Is recorded in the database, it can alert and catch it. The problem is that this is weak for Zero-day attacks, as new signature patterns that aren’t within the database of the IDS won’t be detected. 
+2.	Anomaly-Based IDS – this type of IDS learns the normal behavior and watches the traffic as a baseline for how it should act. If there is a deviation from its recorded normal behavior, it will trigger an alert and catch it. Zero-day attacks can be caught with this one, although it doesn’t necessarily mean that it will detet every zero day attack, this also generates false positives as anything that can deviate the baseline away from the normal reading will make it so that it generates an alert 
+3.	Hybrid IDS – this combines the features of Signature based and Anomaly based making it much powerful since it knows attack patterns that are stored in the database and it can possible catch zero day attacks too. This doesn’t mean that the capability of zero day attacks caught here are increased or that it’s more powerful compared to Anomaly-Based. This just means that combining both extends its coverage. 
 
+The most widely used IDS is Snort. It uses hybrid IDS to identify known threats, but it’s mostly Signature based with hybrid capabilities. These rules can be defined within the configuration file of Snort. There are predefined rules but you can also create custom rules that matches your objectives. There are different modes of Snort, the modes are as follows: 
+1.	Packet Sniffer Mode – this doesn’t impose any rules or detect, this basically captures packets. It reads them and displays it. This doesn’t do analyzation, but instead outputting of packets only. 
+2.	Packet logging Mode – this logs the packets, the network traffic on a location that is specified by you. This makes it so that analyzation of packets are possible after the fact that they have been captured and were analyzed. This network traffic can be saved in formats that are available to Snort like a pcap file. 
+3.	Network Intrusion Detection System Mode – This is the primary tool of Snort. Snort’s IDS mode that monitor’s traffic in real-time and applies its rule files to identify a match to known attack patterns stored as signature. When there is a match, it generates an alert. 
+This is an example of how to use it and the commands that are used to navigate and use Snort. 
+Snort’s rules are usually stored in local.rules file. We can easily edit the rules within here, and add or remove custom rules by using nano on it. This is how we structure Snort’s rules 
 
+[action] [protocol] [src IP] [src port] -> [dest IP] [dest port] (msg;”Ping Detected”; sid:10001; rev:1;) 
+
+This is how it is formatted, the msg defines what text to appear when an alert is triggered, while the contents inside it are the rule metadata that can also be configured. Sid is the unique ID that we are about to assign to this rule, and rev is how many times have we revised it. A sample rule would look like this: 
+alert icmp any any - > $HOME_NET any (msg:”Ping Detected”; sid:100001; rev:1;) 
+This alert will trigger whenever an icmp packet from any source IP and went through any port and is received by our home network IP and is received from any port. A message will alert us and prompt “Ping Detected” 
+
+Snort is ran with this command: 
+-	sudo snort -q -l /var/log/snort -i lo -A console -c /etc/snort/snort.conf
+o	-q means quiet
+o	-l for logging the results to /var/log/snort 
+o	-i lo listens to the loopback 
+o	-A displays an alert directly on the terminal 
+o	-c on what configuration to use, snort.conf is considered as the brains of snort. 
+This is for running snort live. We can also analyze packets that were logged, usually in pcaps file. to use this mode we just replace -i lo with -r [pcap.file]
 
 
 
