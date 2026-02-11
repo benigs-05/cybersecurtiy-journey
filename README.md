@@ -1017,6 +1017,23 @@ o	-A displays an alert directly on the terminal
 o	-c on what configuration to use, snort.conf is considered as the brains of snort. 
 This is for running snort live. We can also analyze packets that were logged, usually in pcaps file. to use this mode we just replace -i lo with -r [pcap.file]
 
+Next is Vulnerability Scanner, before we start, we need to define what a vulnerability is first. A vulnerability is a weakness in a system that can be exploited to compromise confidentiality, integrity, and availability. 
+
+Vulnerability scanner is used to discover known vulnerabilities, correlate it to CVE (Common Vulnerability Exposure), and give it a severity rating using the CVSS (Common Vulnerability Scoring System)
+
+There are 2 categorization of Vulnerability Scanning:
+1.	Authenticated – this means that the credential is provided. This is mainly used for having the same access as who has provided the credentials. It might be low level or not. 
+2.	Unauthenticated – no credentials are provided and is used outside the host.
+And scans can either be the 2:
+1.	Internal scans – inside the network
+2.	External scans – outside the network
+
+There are a lot of vulnerability scanner that are available, it mentions a few in the room like: 
+1.	Nessus – an extensive vulnerability scanner. Can either be paid or free
+2.	Qualys – uses subscription type. It has continuous scanning, asset management, and even compliance check
+3.	Nexpose also uses a subscription type, discovers new assts and vulnerability scans, scores, and the impact of the vulnerabilities
+4.	OpenVAS(Open Vulnerability Assessment System) – this is free, it has basic features, and is simple to use. 
+
 
 
 
