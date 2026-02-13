@@ -1034,6 +1034,145 @@ There are a lot of vulnerability scanner that are available, it mentions a few i
 3.	Nexpose also uses a subscription type, discovers new assts and vulnerability scans, scores, and the impact of the vulnerabilities
 4.	OpenVAS(Open Vulnerability Assessment System) – this is free, it has basic features, and is simple to use. 
 
+### Day 23 – Defensive Security Tooling (CyberChef, CAPA,) ### 
+
+As I ended my topics about Security Solutions, I was presented with defensive security tools that can help transform data, analyze capabilities, and observe behavior of programs that may or may not be malicious. 
+
+I was first introduced to CyberChef, this is compared to having a “Swiss Army Knife” as this tool can decode, encode, extract, parse data that can help in analyzation. It has a simple interface for navigation and a lot of tools present in helping to transform data. 
+
+CyberChef in default is composed of 4 tabs. Operations (this is where you can find a lot of tools that you can use), Recipe (this is where the operations you choose will show up on how you would formulate to transform your data), Input (for the data that you want to transform), and the output (the result of the input + the operations you chose). 
+
+But this doesn’t mean that it’s easy as choosing whatever you want and then expecting a good result. For it to work, you need to set a clear objective. Having an objective means there’s an output that you want to attain, so you select the operations wisely, fine tune it along the way, until you get the output that you need. 
+
+Here are some examples of its operations: 
+1.	From morse code to text 
+2.	URL Encode – this separates the url structure itself to what is data. This makes it so that the system is not confused on how to handle the URL
+3.	To Base64 
+4.	To Hex
+5.	To Decimal
+6.	ROT13 – Ceasar’s Cipher using 13 rotations
+7.	Extracting domains
+8.	Extracting IPs
+9.	Extracting Emails
+And so much more capabilities. CyberChef excels at aiding in cyber tasks that we might do and have a good tool to help us achieve in transforming data. 
+
+Next is CAPA (Common Analysis Platform for Artifacts), CAPA uses static analysis that examines compiled binaries without executing it. This means that without running the code it tries to understand the structure of it, the logic itself, and the code and relates it to frameworks that can characterize its behavior. 
+
+As we scan a file, the output will show 4 things: [to scan we invoke the command capa.exe filepath, -v for verbose and -vv]
+1.	The first information that’ll be seen is the general information like the md5 hash, sha1 hash, sha256 hash, its analysis type, the OS, the architecture and the path. 
+2.	 Next is the characterization using the ATT&CK (Adversarial Tactics, Techniques, and Common Knowledge), this is a document containing known attack techniques from every stage of attack. That’s why with this framework, it can provide categorization of the malicious file’s capability. This characterization is formatted like this goal:method. 
+3.	MAEC (Malware Attribute Enumeration and Characterization) is a language that categorizes the low-level findings to generate what that malware might resemble. Common MAEC values can be Launcher (trigger specific actions, staging, payloads, persistence), Downloader (downloads and executes, fetching, pulling updates, config files). And other categories that can be found. 
+4.	MBC (Malware Behavior Catalogue) with the format (Objective : Behavior : Identifier there can also be Method before the identifier itself) logically this is the same as classifying using the ATT&CK, but they differ and MBC might reference it, but it will never copy it. 
+The static analysis done by CAPA doesn’t necessarily mean that everything that has been scanned and shown is its true behavior when run. Again, we are using static analysis and CAPA is just analyzing based on the capabilities that it can do. So, in short, it’s what it MIGHT do when observed.
+
+### Day 24 – Defensive Security Tooling (REMnux and FlareVM) 
+These were the last tools that were discussed to me, REMnux VM and FlareVM. Although both are VMs, they have different capabilities as to why you will use one from the other.
+
+Let’s start with REMnux. REMnux is linux-based virtual machine that is artifact-centered. This virtual machine has tools inside it that can meet specific objectives that we might want to attain. We can use these tools to decide on how we would want to dissect specific malware. This usually means that this is highly used for static analysis, but that doesn’t mean that it doesn’t have its fair share of dynamic analysis tools. These tools help us analyze malware in a controlled environment, making it easier to isolate the malware without contaminating the other systems. 
+
+This room introduced me to a couple of its tools that can be used for static and dynamic analysis. The tools are as follows: 
+1.	Oledump.py, is a python tool that analyzes OLE2 files, these are files that contain subfiles within them that might be used for attacking your system. This means the .doc, .ppt. xls, might contain unwanted and malicious software that can harm your system. Things like spawning a powershell and using that to fetch something, macros that can open and close processes without you knowing, and other things that can be malicious for your system. To run oledump, we simply use the command (oledump.py filename). 
+The output will give you a list of data streams, or the sub files within that file that will have its own index, size, and even a flag that will tell you what something might do based from the analysis. The flag that I was introduced to was M, and this means that this specific sub-file might have a macro embedded in it, malicious or not. For selecting a specific stream to view we just us -s and the number that the stream that we want to point to. 
+
+Once we select a stream it will output what it contains on a hex format, that’s why we have the parameters –vbadecompress so oledump will automatically decompress any compressed VBA macros.
+	The output will result to a more readable form. 
+	This is the basics of oledump and can be useful for static analysis and analyzing what a 
+	OLE2 file might contain on its sub-files. 
+2.	Next is using a dynamic analysis tool that can create fake services so that we can check the behavior of a specific program once it is executed. This tool is called INetSim: Internet Services Simulation Suite. 
+Whenever this simulation is running and it is properly configured, the behavior and the logs of the malware in relation to protocols it is connected to will be logged and reported after a simulation has finished. We can see HTTP requests that the malware might’ve used, the protocols that it tried to connect to, the requests, the responses, what it might’ve fetched and so many thing that involves in using network services.
+This makes it so that we have an isolated environment, where we don’t risk the contamination of other devices, especially a network wherein we can properly observe the behavior of the program. 
+
+3.	Next is another static analysis tool which is Volatility which scans and analyze memory images. There are a lot of plugins that we can use in volatility, but here are some that were introduced to me: 
+a.	PsTree – lists processes based on their parent process ID
+b.	PsList – list of all current active processes 
+c.	CmdLine – process cmdline argument
+d.	FileScan – scans file objects in a particular Windows Memory Image
+e.	DllList – lists aall the loaded modules 
+f.	PsScan – scan for processed present in a memory image
+g.	Malfind – lists process memory images that might potentially contain injected code. 
+Each one of these can be used based on the objective that we might want to achieve. We can also create a script that will iterate on each one and generate a .txt file for each of these parameters. 
+We also have strings that are data that may no longer be valid to the OS structure or what the memory remembers, or leftovers. This isn’t structured and will just print lines of data, but by investigating the output of these we can see URLs, passwords, files, etc. It is a lot of garbage data, but is still helpful if we can find something that can help us in investigating. 
+The next VM that was presented to me was FlareVM (Forensics, Logic Analysis and, Reverse Engineering)
+Just like REMnux, this is a virtual machine and has a collection of tools, but their difference is that this can aid in live observation of how a malware runs. It is also worth nothing that while REMnux is Artifact-Centric, Flare is execution-mechanism centric because it allows for Windows environment execution. 
+There were a lot of tools also presented to me in comparison to REMnux such as Reverse Engineering and Debugging tools, Disassemblers and Decompilers, Static and Dynamic analysis, Forensics and Incident Response, Network Analysis, File analysis, and Scripting and automation. It gave me a brief overview of what tools might be contained in the classification, but the tools that this room focused on actually using in the Virtual Machine are: 
+1.	Process Monitor – used for tracking system activity
+2.	Process Explorer – lists process of the parent child relationship, DLLs loaded, and path
+3.	HxD – malicious file can be altered or examined via hex editing
+4.	Wireshark – for observing and investigating network traffic and for checking individual packets 
+5.	CFF Explorer – generate file hashes for integrity verification, authenticate the source of system files, validate their validity.
+6.	PEStudio – static analysis of files 
+7.	FLOSS – Extracts and de-obfuscates all strings from malware programs using advanced static analysis. 
+With this tools, it helped me analyze statically and dynamically while observing how the malware was running in the system. Just like REMnux, this gives an isolated environment to objectively see how a malicious program might run. 
+
+
+This was a good introduction to the many security tools that I’ve learned, specially the last 4 as they taught me that there are a lot of tools that can help in aiding in cybersecurity jobs. This makes me excited and am looking forward to practicing and learning security analyst tools more in-depth. For the last 2 months, I certainly enjoyed studying and learning about cybersecurity. 
+
+### Day 25 – Security Principles ###
+This room introduced me to a lot of concepts that made me understand how vital is it to learn the different architectures, principles, models, and frameworks that cybersecurity has. 
+
+To start of I learned the CIA Triad: 
+1.	Confidentiality – intended person can access the data 
+2.	Integrity – isn’t altered or modified 
+3.	Availability – available for use 
+Beyond CIA there are also principles that must be upheld like:
+1.	Authenticity – not fraudulent or counterfeit
+2.	Non-repudation – cannot deny that they are the source
+3.	This 2 are from Pareknian Hexad: 
+a.	Utility – usefulness of information 
+b.	Possession – protect from unauthorized access 
+These are security principles that an organization must adhere to, to create and ensure a good security is in place. 
+Next we have DAD (Disclosure, Alteration, Destruction/Denial), this is the exact opposite of CIA and these are what attacks typically attain. 
+
+Next are the 3 Foundational Security Models 
+1.	Bell-LaPadula Model – protects confidentiality with, “no read up” and “no write down”, along with discretionary security property where one is allowed access to read and write.
+2.	Biba model – adheres integrity. This protects from contamination and corruption by 
+a.	High integrity subjects must not read low integrity data 
+b.	Low integrity subject must not write to higher integrity object. 
+3.	Clark-Wilson Model – achieve integrity
+a.	Constrained Data Item (CDI) – data and its integrity we want to preserve
+b.	Unconstrained Data Item (UDI) – all data types beyond CDI
+c.	Transformation Procedures – programmed operations, maintain integrity of CDI
+d.	Integrity Verification Procedures (IVPs) – check and ensure validity of CDI 
+The next principle was Defence-in-Depth ,where layering are created within an organization. We can also call it Multi-Level Security 
+Then we have ISO(International Organization of Standardization)/IEC (International Electrotechnical Commission) 19249 states 5 architectural principles and 5 design principles
+5 Architectural Principles:
+1.	Domain Separation – similar resources = single entity that have their own domain and security attributes 
+2.	Layering – Multi-Level Seurity, wherein level has own security attributes 
+3.	Encapsulation – internal workings of data are not directly accessible 
+4.	Redundancy – ensures availability and interface integrity 
+5.	Virtualization – This is OS sharing one hardware
+5 Design Principles: 
+1.	Least Privilege – least amount of permission based from need
+2.	Attack surface minimization – minimize risks by deduction of things inside system that aren’t of need or can be a weakness
+3.	Centralized Parameter Validation – all components use validation 
+4.	Centralized General Security Services –centralization of security services of an organization so that it has one place of being held. 
+5.	Preparing for Error and Exception Handling – proper fail safe per error 
+Next is the Zero Trust vs Trust But Verify 
+1.	Zero Trust – treats trust as a vulnerability, never trusts always verify, and every entity is considered adversarial.
+2.	Trust But Verify – always verify even if trusted 
+The difference between vulnerability, threat, and risk 
+1.	Vulnerability – Susceptible to attack or damage, a weakness
+2.	Threat – Potential Danger associated with the weakness
+3.	Risk – likelihood of a threat actor exploiting a vulnerability, and the impact on business. 
+
+This also discussed that training is vital when it comes to cybersecurity. This makes sure that all the members that are part of the team are prepared in a controlled environment rather that live attacks.  
+
+Lastly, a brief overview of the OWASP Top 10 (Open Web Application Security Project) that understands web technologies and exploitations, provides resources and tools designed to improve security or software apps. 
+OWASP TOP 10: 
+1.	AO1 : Broken Access Control
+2.	A07 : Authentication Failures 
+3.	A09 : Logging and Alerting Failures 
+4.	AS02 : Security Misconfigurations 
+5.	AS03 : Software Supply Chain Failures
+6.	AS04 : Cryptographic Failures 
+7.	AS06 : Flawed Logic or Architecture
+8.	A04 : Cryptographic Failures 
+9.	A05 : Injection
+10.	A08 : Software or Data Integrity Failures 
+
+And with that, that sums up everything that I’ve been trying to learn for the past 2 months starting last year of December. I really am excited about all the things that cybersecurity has in store for me. I still vividly remember the first day when I started this journey. It was filled with excitement, hope, and I enjoyed it. I am glad that I still feel that way today and am still looking forward for more in the future. That’s it for this 2 months, I will now start studying for Network+ Certification before returning to tryhackme for its SOC Level 1 Path! 
+
+
 
 
 
